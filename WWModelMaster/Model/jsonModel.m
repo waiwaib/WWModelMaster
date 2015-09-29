@@ -157,7 +157,16 @@
     NSArray * properyNames = [self allPropertyNames];
     [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([properyNames containsObject:key]) {
-            [self setValue:obj forKey:key];
+            if ([obj respondsToSelector:@selector(mutableCopyWithZone:)]) {
+                [self setValue:[obj mutableCopy] forKey:key];
+            }
+            else if ([obj respondsToSelector:@selector(copyWithZone:)]){
+                [self setValue:[obj copy] forKey:key];
+            }
+            else
+            {
+               [self setValue:obj forKey:key];
+            }
         }
         else
         {

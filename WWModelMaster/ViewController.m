@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "testModel.h"
+#import "superModel.h"
 @interface ViewController ()
 
 @end
@@ -22,7 +23,7 @@
     testModel * model1 = [[testModel alloc]init];
     [model1 setValuesForKeysWithDictionary:test];
     
-    [model1 setPropertyWithDictionary:test];
+    //[model1 setPropertyWithDictionary:test];
 
     [model1 display];
     
@@ -34,18 +35,21 @@
     
     
     testModel * model2 = [[testModel alloc]initWithDictionary:test];
-    //[model2 displayModleProperty];
+    [model2 display];
     
     NSString * jsonStr = @"{\"name\":\"huihui\",\"age\":23,\"livePlace\":\"中国南京\"}";
     testModel * model3 = [[testModel alloc]initWithJsonString:jsonStr];
-    //[model3 displayModleProperty];
+    [model3 display];
     
     testModel * model4 = [[testModel alloc]initWithData:data];
-    //[model4 displayModleProperty];
+    [model4 display];
     
-    NSDictionary * dic = [model4 toDictionaryWithKeys:@[@"name",@"age",@"live"]];
+    NSString * tojsonStr = [model4 toJsonStringWithKeys:@[@"name",@"ae",@"live",@"hfha"]];
     
-    NSString * tojsonStr = [model4 toJsonStringWithKeys:@[@"nae",@"ge",@"live"]];
+    
+    NSDictionary * sDic = @{@"work":@"teacher",@"userInfo":model1};
+    superModel * sModel1 = [[superModel alloc]initWithDictionary:sDic];
+    [sModel1 display];
 }
 
 - (void)didReceiveMemoryWarning {
