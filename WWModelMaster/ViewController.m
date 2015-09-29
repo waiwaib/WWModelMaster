@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "testModel.h"
 #import "superModel.h"
+#import "thirdModel.h"
 @interface ViewController ()
 
 @end
@@ -46,10 +47,16 @@
     
     NSString * tojsonStr = [model4 toJsonStringWithKeys:@[@"name",@"ae",@"live",@"hfha"]];
     
-    
+    //2层嵌套
     NSDictionary * sDic = @{@"work":@"teacher",@"userInfo":model1};
     superModel * sModel1 = [[superModel alloc]initWithDictionary:sDic];
     [sModel1 display];
+    
+    //3层嵌套
+    NSDictionary * thirdDic = @{@"tirdName":@"huihui",@"supe":sModel1};
+    thirdModel * thmodel = [[thirdModel alloc]initWithDictionary:thirdDic];
+    [thmodel display];
+    
 }
 
 - (void)didReceiveMemoryWarning {

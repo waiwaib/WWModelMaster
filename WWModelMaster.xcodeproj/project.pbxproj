@@ -17,6 +17,7 @@
 		2D9AA2051BBA6E9400A2D487 /* testModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA2041BBA6E9400A2D487 /* testModel.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA2081BBA721B00A2D487 /* jsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA2071BBA721B00A2D487 /* jsonModel.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA20B1BBA923600A2D487 /* superModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA20A1BBA923600A2D487 /* superModel.m */; settings = {ASSET_TAGS = (); }; };
+		2D9AA20E1BBA974B00A2D487 /* thirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA20D1BBA974B00A2D487 /* thirdModel.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		2D9AA2071BBA721B00A2D487 /* jsonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jsonModel.m; sourceTree = "<group>"; };
 		2D9AA2091BBA923600A2D487 /* superModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = superModel.h; sourceTree = "<group>"; };
 		2D9AA20A1BBA923600A2D487 /* superModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = superModel.m; sourceTree = "<group>"; };
+		2D9AA20C1BBA974B00A2D487 /* thirdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thirdModel.h; sourceTree = "<group>"; };
+		2D9AA20D1BBA974B00A2D487 /* thirdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thirdModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				2D9AA2041BBA6E9400A2D487 /* testModel.m */,
 				2D9AA2091BBA923600A2D487 /* superModel.h */,
 				2D9AA20A1BBA923600A2D487 /* superModel.m */,
+				2D9AA20C1BBA974B00A2D487 /* thirdModel.h */,
+				2D9AA20D1BBA974B00A2D487 /* thirdModel.m */,
 			);
 			path = testModel;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				2D9AA2051BBA6E9400A2D487 /* testModel.m in Sources */,
 				2D9AA2081BBA721B00A2D487 /* jsonModel.m in Sources */,
 				2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */,
+				2D9AA20E1BBA974B00A2D487 /* thirdModel.m in Sources */,
 				2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */,
 				2D9AA20B1BBA923600A2D487 /* superModel.m in Sources */,
 				2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */,
