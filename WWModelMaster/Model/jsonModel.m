@@ -65,15 +65,21 @@
 {
     
     NSMutableArray * keysArr = [[NSMutableArray alloc]initWithArray:propertyNames copyItems:YES];
+    NSMutableArray * shouldDelKey = [[NSMutableArray alloc]init];
     NSArray * properties = [self allPropertyNames];
     for (NSString * key in keysArr) {
         if (![properties containsObject:key]) {
             NSString * expDsp = [NSString stringWithFormat:@"传入了错误的key:%@",key];
             WWExceptionLog(expDsp);
-            
-            [keysArr removeObject:key];
+            [shouldDelKey addObject:key];
         }
     }
+    
+    //删除需要删除的key
+    for (NSString * delKey in shouldDelKey) {
+        [keysArr removeObject:delKey];
+    }
+    
     return [self dictionaryWithValuesForKeys:keysArr];
 }
 
