@@ -85,7 +85,9 @@ livePlace-->中国南京
 同样具有完善的异常处理机制;
 
 dictionarys 和 models 互相转换
+
 NSDictionary * test = @{@"name":@"waiwai",@"age":@22,@"livePlace":@"中国南京"};
+
 NSDictionary * test1 = @{@"name":@"huihui",@"age":@20,@"livePlace":@"中国南京"};
     
 NSArray * models = [testModel modelsWithDictionarys:@[test,test1]];
