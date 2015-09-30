@@ -84,7 +84,28 @@
  */
 -(void) display;
 
-
 /****************	类函数	****************/
 
+/**
+ *  将dictionary数组转化为model数组
+ *
+ *  @param dicts dictionary数组
+ *
+ *  @return model数组
+ */
++(NSArray *) modelsWithDictionarys:(NSArray *) dicts;
+
+/**
+ *  将model数组转化为dictionary数组,keys传nil代表转化整个model;
+ *
+ *  @param models model数组;
+ *  @param keys   要转化的model key; 传nil代表转化整个model
+ *
+ *  @return dictionary数组
+ */
++(NSArray *) dictionarysWithModels:(NSArray *) models convertKeys:(NSArray *) keys;
+
+/****************	全局函数	****************/
+
+extern BOOL isNull(id value);
 @end

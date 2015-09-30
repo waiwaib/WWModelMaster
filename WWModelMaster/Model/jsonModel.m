@@ -13,6 +13,16 @@
 #define WWErrorLog(errDsp) NSLog(@"method:%@ error -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],errDsp);
 #define WWExceptionLog(expDsp) NSLog(@"method:%@ Exception -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],expDsp);
 
+
+extern BOOL isNull(id value)
+{
+    if (!value) return YES;
+    if ([value isKindOfClass:[NSNull class]]) return YES;
+    
+    return NO;
+}
+
+
 #pragma mark - AbstractJsonModelProtocol
 -(instancetype) initWithDictionary:(NSDictionary *)dictionary
 {
@@ -276,5 +286,43 @@
 -(void) setValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues
 {
     [self setPropertyWithDictionary:keyedValues];
+}
+
+#pragma mark - class method
++(NSArray *) modelsWithDictionarys:(NSArray *)dicts
+{
+    if (isNull(dicts)) {
+        return nil;
+    }
+    
+    NSMutableArray * models = [NSMutableArray arrayWithCapacity:dicts.count];
+    
+    for (NSDictionary * dict in dicts) {
+        
+        id modelObj = [[[self class] alloc]initWithDictionary:dict];
+        
+        [models addObject:modelObj];
+        
+    }
+    
+    return models;
+}
+
++(NSArray *) dictionarysWithModels:(NSArray *)models convertKeys:(NSArray *)keys
+{
+    if (isNull(models)) {
+        return nil;
+    }
+    
+    NSMutableArray * dicts = [NSMutableArray arrayWithCapacity:models.count];
+    
+    for (id<JsonModelProtocol> modelObj in models) {
+        
+        NSDictionary * dict = isNull(keys) ? [modelObj toDictionary] : [modelObj toDictionaryWithKeys:keys];
+        
+        [dicts addObject:dict];
+    }
+    
+    return dicts;
 }
 @end
