@@ -9,5 +9,10 @@
 #import "testModel.h"
 
 @implementation testModel
-
+-(void) beforeLoad
+{
+    self.name = @"";
+    self.age = @0;
+    self.livePlace = @"";
+}
 @end

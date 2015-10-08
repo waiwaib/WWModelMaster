@@ -13,12 +13,14 @@
 -(id) init
 {
     if (self = [super init]) {
-        [self loadModel];
+        
     }
     return self;
 }
-
--(void) loadModel
+/**
+ *  如果需要在model生成前设置一些内容,请在子类重写该函数
+ */
+-(void) beforeLoad
 {
     
 }

@@ -22,11 +22,20 @@ extern BOOL isNull(id value)
     return NO;
 }
 
-
-#pragma mark - AbstractJsonModelProtocol
--(instancetype) initWithDictionary:(NSDictionary *)dictionary
+-(id) init
 {
     if (self = [super init]) {
+        [self beforeLoad];
+    }
+    return self;
+}
+
+#pragma mark - AbstractJsonModelProtocol
+
+
+-(instancetype) initWithDictionary:(NSDictionary *)dictionary
+{
+    if (self = [self init]) {
         [self setPropertyWithDictionary:dictionary];
     }
     return self;
@@ -34,7 +43,7 @@ extern BOOL isNull(id value)
 
 -(instancetype) initWithJsonString:(NSString *)string
 {
-    if (self = [super init]) {
+    if (self = [self init]) {
         NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
         
         NSError *err;
@@ -52,7 +61,7 @@ extern BOOL isNull(id value)
 
 -(instancetype) initWithData:(NSData *)data
 {
-    if (self = [super init]) {
+    if (self = [self init]) {
         NSError * serialErr;
         
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&serialErr];
@@ -162,6 +171,11 @@ extern BOOL isNull(id value)
 }
 
 #pragma mark - public method
+-(void) beforeLoad
+{
+    
+}
+
 -(void) setPropertyWithDictionary:(NSDictionary *)data
 {
     NSArray * properyNames = [self allPropertyNames];

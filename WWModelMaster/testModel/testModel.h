@@ -7,7 +7,9 @@
 //
 
 #import "Model.h"
-
+/**
+ *  用户信息model
+ */
 @interface testModel : Model
 @property (nonatomic , retain) NSString * name;
 @property (nonatomic , retain) NSNumber * age;

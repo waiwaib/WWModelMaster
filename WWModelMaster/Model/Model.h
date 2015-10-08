@@ -15,10 +15,4 @@
  */
 @interface Model : jsonModel
 
-
-/**
- *  该函数将在init返回前执行;
- */
--(void) loadModel;
-
 @end

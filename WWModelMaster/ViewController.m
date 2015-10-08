@@ -21,11 +21,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     NSDictionary * test = @{@"name":@"waiwai",@"age":@22,@"livePlace":@"中国南京"};
-    NSDictionary * test1 = @{@"name":@"huihui",@"age":@20,@"livePlace":@"中国南京"};
+    NSDictionary * test1 = @{@"name":@"huihui",@"livePlace":@"中国南京"};
     
     NSArray * models = [testModel modelsWithDictionarys:@[test,test1]];
     
-    NSDictionary * dicts = [testModel dictionarysWithModels:models convertKeys:@[@"name"]];
+    NSDictionary * dicts = [testModel dictionarysWithModels:models convertKeys:@[@"name",@"age"]];
     
     testModel * model1 = [[testModel alloc]init];
     [model1 setValuesForKeysWithDictionary:test];

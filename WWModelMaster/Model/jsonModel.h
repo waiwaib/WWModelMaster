@@ -72,6 +72,11 @@
 @interface jsonModel : NSObject<JsonModelProtocol>
 
 /**
+ *  该函数将在init返回前执行;
+ */
+-(void) beforeLoad;
+
+/**
  *  根据dictionary设置属性
  *
  *  @param data 属性dictionary
