@@ -77,7 +77,7 @@ extern BOOL isNull(id value)
 
 -(NSDictionary *) toDictionary
 {
-    return  [self dictionaryWithValuesForKeys:[self allPropertyNames]];
+    return [self toDictionaryWithKeys:[self allPropertyNames]];
 }
 
 -(NSDictionary *) toDictionaryWithKeys:(NSArray *)propertyNames
@@ -94,12 +94,36 @@ extern BOOL isNull(id value)
         }
     }
     
-    //删除需要删除的key
+    //删除错误的key
     for (NSString * delKey in shouldDelKey) {
         [keysArr removeObject:delKey];
     }
     
-    return [self dictionaryWithValuesForKeys:keysArr];
+    BOOL containModel = NO;
+    
+    NSMutableDictionary * result ;
+    
+    for (NSString * property in keysArr) {
+        
+        id value = [self valueForKey:property];
+        
+        if ([value isKindOfClass:[jsonModel class]]) {
+            
+            containModel = YES;
+            
+            if (!result) {
+                result = [[NSMutableDictionary alloc]init];
+            }
+            
+            [result setObject:[value toDictionary] forKeyedSubscript:property];
+        }
+        else
+        {
+            [result setObject:value forKeyedSubscript:property];
+        }
+    }
+    
+    return containModel ? [result copy] : [self dictionaryWithValuesForKeys:keysArr];
 }
 
 -(NSData *) toData
@@ -181,6 +205,7 @@ extern BOOL isNull(id value)
     NSArray * properyNames = [self allPropertyNames];
     [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([properyNames containsObject:key]) {
+            
             if ([obj respondsToSelector:@selector(mutableCopyWithZone:)]) {
                 [self setValue:[obj mutableCopy] forKey:key];
             }
@@ -196,11 +221,7 @@ extern BOOL isNull(id value)
         {
             const char * modelName = class_getName([self class]);
             
-            BOOL isNSString =  [obj isMemberOfClass:[NSString class]];
-            
-            NSString * objStr =  isNSString ? obj : [obj stringValue];
-            
-            NSLog(@"赋值:%@-->出现多余数据 key:%@ value:%@",[NSString stringWithUTF8String:modelName],key,objStr);
+            NSLog(@"赋值:%@-->出现多余数据 key:%@",[NSString stringWithUTF8String:modelName],key);
         }
     }];
 }
@@ -227,7 +248,12 @@ extern BOOL isNull(id value)
             
             [invocation getReturnValue:&returnValue];
             
-            [displayStr appendFormat:@"%@-->%@\n",properties[i],returnValue];
+            @try {
+                [displayStr appendFormat:@"%@-->%@\n",properties[i],returnValue];
+            }
+            @catch (NSException *exception) {
+                WWExceptionLog(exception.description);
+            }
         }
     }
     const char * modelName = class_getName([self class]);
