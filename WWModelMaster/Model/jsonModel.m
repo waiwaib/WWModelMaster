@@ -7,20 +7,12 @@
 //
 
 #import "jsonModel.h"
-#import <objc/runtime.h>
+#import "valueTransform.h"
+
 @implementation jsonModel
 
 #define WWErrorLog(errDsp) NSLog(@"method:%@ error -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],errDsp);
 #define WWExceptionLog(expDsp) NSLog(@"method:%@ Exception -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],expDsp);
-
-
-extern BOOL isNull(id value)
-{
-    if (!value) return YES;
-    if ([value isKindOfClass:[NSNull class]]) return YES;
-    
-    return NO;
-}
 
 -(id) init
 {
@@ -194,42 +186,10 @@ extern BOOL isNull(id value)
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-#pragma mark - public method
--(void) beforeLoad
-{
-    
-}
-
--(void) setPropertyWithDictionary:(NSDictionary *)data
-{
-    NSArray * properyNames = [self allPropertyNames];
-    [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        if ([properyNames containsObject:key]) {
-            
-            if ([obj respondsToSelector:@selector(mutableCopyWithZone:)]) {
-                [self setValue:[obj mutableCopy] forKey:key];
-            }
-            else if ([obj respondsToSelector:@selector(copyWithZone:)]){
-                [self setValue:[obj copy] forKey:key];
-            }
-            else
-            {
-               [self setValue:obj forKey:key];
-            }
-        }
-        else
-        {
-            const char * modelName = class_getName([self class]);
-            
-            NSLog(@"赋值:%@-->出现多余数据 key:%@",[NSString stringWithUTF8String:modelName],key);
-        }
-    }];
-}
-
--(void) display
+-(NSString *) analysisModelDisplayContent
 {
     NSArray * properties = [self allPropertyNames];
-    NSMutableString * displayStr = [[NSMutableString alloc]initWithString:@"\n"];
+    NSMutableString * displayStr = [[NSMutableString alloc]initWithString:@"{\n"];
     
     for (int i = 0; i<properties.count; i++) {
         SEL getSEL = [self creatGetterWithPropertyName:properties[i]];
@@ -248,17 +208,88 @@ extern BOOL isNull(id value)
             
             [invocation getReturnValue:&returnValue];
             
+            objc_property_t property = class_getProperty([self class], [properties[i] cStringUsingEncoding:NSUTF8StringEncoding]);
+            
+            NSDictionary * propertyInfo = [valueTransform propertyInfoFromProperty:property];
+            
+            NSString * display;
+            
+            if (propertyTypeModel == [propertyInfo[constant_propertyType] integerValue]) {
+                
+                id <JsonModelProtocol> idTmep = returnValue;
+                
+                display = [idTmep analysisModelDisplayContent];
+            }
+            else if(propertyTypeBool == [propertyInfo[constant_propertyType] integerValue])
+            {
+                //针对bool类型 做特殊处理;
+                BOOL boolValue = [self valueForKey:properties[i]];
+                display = boolValue ? @"YES" : @"NO";
+            }
+            else
+            {
+                display = [valueTransform propertyDisplayFromProperty:property value:returnValue];
+            }
             @try {
-                [displayStr appendFormat:@"%@-->%@\n",properties[i],returnValue];
+                [displayStr appendFormat:@"%@-->%@\n",properties[i],display];
             }
             @catch (NSException *exception) {
                 WWExceptionLog(exception.description);
             }
         }
     }
+    [displayStr appendString:@"}"];
+    return displayStr;
+}
+#pragma mark - public method
+-(void) beforeLoad
+{
+    
+}
+
+-(void) setPropertyWithDictionary:(NSDictionary *)data
+{
+    if (![data isKindOfClass:[NSDictionary class]]) {
+        WWExceptionLog(@"赋值model请使用Dictionary")
+        return;
+    }
+    
+    NSArray * properyNames = [self allPropertyNames];
+    [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([properyNames containsObject:key]) {
+            
+            objc_property_t property = class_getProperty([self class], [key cStringUsingEncoding:NSUTF8StringEncoding]);
+            
+            NSDictionary * propertyInfo = [valueTransform propertyInfoFromProperty:property];
+            
+            if (propertyTypeModel == [propertyInfo[constant_propertyType] integerValue] && [obj isKindOfClass:[NSDictionary class]]) {
+                id <JsonModelProtocol> modelProperty;
+                
+                Class modelClass = NSClassFromString(propertyInfo[constant_propertyClassName]);
+                
+                modelProperty = [[modelClass alloc]initWithDictionary:obj];
+                
+                [self setValue:modelProperty forKey:key];
+            }
+            else 
+            {
+                [self setValue:obj forKey:key];
+            }
+        }
+        else
+        {
+            const char * modelName = class_getName([self class]);
+            
+            NSLog(@"赋值:%@-->出现多余数据 key:%@",[NSString stringWithUTF8String:modelName],key);
+        }
+    }];
+}
+
+-(void) display
+{
     const char * modelName = class_getName([self class]);
     
-    NSLog(@"%@:%@",[NSString stringWithUTF8String:modelName],displayStr);
+    NSLog(@"%@:%@",[NSString stringWithUTF8String:modelName],[self analysisModelDisplayContent]);
 }
 #pragma mark - coping delegate
 - (id)copyWithZone:(nullable NSZone *)zone

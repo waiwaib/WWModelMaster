@@ -12,5 +12,7 @@
 
 @property (nonatomic , retain) testModel * userInfo;
 @property (nonatomic , retain) NSString * work;
+@property (nonatomic , retain) NSArray * arr;
+@property (nonatomic , assign) BOOL yesOrNo;
 
 @end

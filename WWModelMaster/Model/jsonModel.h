@@ -67,6 +67,13 @@
 -(NSString *) toJsonString;
 
 -(NSString *) toJsonStringWithKeys:(NSArray*)propertyNames;
+
+/**
+ *  分析model的内容
+ *
+ *  @return 返回一个内容描述的字符串
+ */
+-(NSString *) analysisModelDisplayContent;
 @end
 
 @interface jsonModel : NSObject<JsonModelProtocol>
@@ -110,7 +117,5 @@
  */
 +(NSArray *) dictionarysWithModels:(NSArray *) models convertKeys:(NSArray *) keys;
 
-/****************	全局函数	****************/
 
-extern BOOL isNull(id value);
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2FE08D1BC74D9E00544693 /* valueTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FE08C1BC74D9E00544693 /* valueTransform.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1E71BBA6CCE00A2D487 /* main.m */; };
 		2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1EA1BBA6CCE00A2D487 /* AppDelegate.m */; };
 		2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1ED1BBA6CCE00A2D487 /* ViewController.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D2FE08B1BC74D9E00544693 /* valueTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = valueTransform.h; sourceTree = "<group>"; };
+		2D2FE08C1BC74D9E00544693 /* valueTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = valueTransform.m; sourceTree = "<group>"; };
 		2D9AA1E31BBA6CCE00A2D487 /* WWModelMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWModelMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9AA1E71BBA6CCE00A2D487 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D9AA1E91BBA6CCE00A2D487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				2D9AA2001BBA6D8900A2D487 /* Model.m */,
 				2D9AA2061BBA721B00A2D487 /* jsonModel.h */,
 				2D9AA2071BBA721B00A2D487 /* jsonModel.m */,
+				2D2FE08B1BC74D9E00544693 /* valueTransform.h */,
+				2D2FE08C1BC74D9E00544693 /* valueTransform.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2FE08D1BC74D9E00544693 /* valueTransform.m in Sources */,
 				2D9AA2051BBA6E9400A2D487 /* testModel.m in Sources */,
 				2D9AA2081BBA721B00A2D487 /* jsonModel.m in Sources */,
 				2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */,
