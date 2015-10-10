@@ -11,6 +11,9 @@
 		2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63441BC8BA6600042AC4 /* WWDatabase.m */; settings = {ASSET_TAGS = (); }; };
 		2D3C63481BC8BACF00042AC4 /* modelAssociateDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */; settings = {ASSET_TAGS = (); }; };
 		2D3C634B1BC8BB1300042AC4 /* WWDBValueAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */; settings = {ASSET_TAGS = (); }; };
+		2D3C634E1BC8C29900042AC4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */; };
+		2D3C63501BC8C31D00042AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3C634F1BC8C31D00042AC4 /* libz.tbd */; };
+		2D3C63531BC905CA00042AC4 /* WWExceptionAndError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1E71BBA6CCE00A2D487 /* main.m */; };
 		2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1EA1BBA6CCE00A2D487 /* AppDelegate.m */; };
 		2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1ED1BBA6CCE00A2D487 /* ViewController.m */; };
@@ -33,6 +36,10 @@
 		2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modelAssociateDB.m; sourceTree = "<group>"; };
 		2D3C63491BC8BB1300042AC4 /* WWDBValueAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWDBValueAdapter.h; sourceTree = "<group>"; };
 		2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWDBValueAdapter.m; sourceTree = "<group>"; };
+		2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		2D3C634F1BC8C31D00042AC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2D3C63511BC905CA00042AC4 /* WWExceptionAndError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWExceptionAndError.h; sourceTree = "<group>"; };
+		2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWExceptionAndError.m; sourceTree = "<group>"; };
 		2D9AA1E31BBA6CCE00A2D487 /* WWModelMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWModelMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9AA1E71BBA6CCE00A2D487 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D9AA1E91BBA6CCE00A2D487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D3C63501BC8C31D00042AC4 /* libz.tbd in Frameworks */,
+				2D3C634E1BC8C29900042AC4 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +112,8 @@
 		2D9AA1E61BBA6CCE00A2D487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */,
+				2D3C634F1BC8C31D00042AC4 /* libz.tbd */,
 				2D9AA1E71BBA6CCE00A2D487 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -123,6 +134,8 @@
 				2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */,
 				2D3C63491BC8BB1300042AC4 /* WWDBValueAdapter.h */,
 				2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */,
+				2D3C63511BC905CA00042AC4 /* WWExceptionAndError.h */,
+				2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +234,7 @@
 				2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */,
 				2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */,
 				2D9AA2011BBA6D8900A2D487 /* Model.m in Sources */,
+				2D3C63531BC905CA00042AC4 /* WWExceptionAndError.m in Sources */,
 				2D3C634B1BC8BB1300042AC4 /* WWDBValueAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,11 +8,8 @@
 
 #import "jsonModel.h"
 #import "valueTransform.h"
-
+#import "WWExceptionAndError.h"
 @implementation jsonModel
-
-#define WWErrorLog(errDsp) NSLog(@"method:%@ error -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],errDsp);
-#define WWExceptionLog(expDsp) NSLog(@"method:%@ Exception -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],expDsp);
 
 - (id)init
 {
