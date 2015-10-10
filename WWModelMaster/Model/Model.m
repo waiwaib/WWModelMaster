@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 @implementation Model
--(id) init
+- (id)init
 {
     if (self = [super init]) {
         
@@ -20,7 +20,7 @@
 /**
  *  如果需要在model生成前设置一些内容,请在子类重写该函数
  */
--(void) beforeLoad
+- (void)beforeLoad
 {
     
 }

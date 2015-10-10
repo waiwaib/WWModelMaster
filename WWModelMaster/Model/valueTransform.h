@@ -62,7 +62,7 @@ typedef NS_ENUM(NSInteger, propertyType){
  *
  *  @return 结果描叙字典包括属性的类别和类名称
  */
-+(NSDictionary *) propertyInfoFromProperty:(objc_property_t) property;
++ (NSDictionary *)propertyInfoFromProperty:(objc_property_t)property;
 
 /**
  *  获取属性的display字符串
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, propertyType){
  *
  *  @return display字串
  */
-+(NSString *) propertyDisplayFromProperty:(objc_property_t) property value:(id) value;
++ (NSString *)propertyDisplayFromProperty:(objc_property_t)property value:(id)value;
 /****************	全局函数	****************/
 
 extern BOOL isNull(id value);

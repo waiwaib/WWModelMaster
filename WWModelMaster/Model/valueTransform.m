@@ -23,7 +23,7 @@ extern BOOL isNull(id value)
 }
 
 
-+(NSDictionary *)propertyInfoFromProperty:(objc_property_t)property
++ (NSDictionary *)propertyInfoFromProperty:(objc_property_t)property
 {
     NSDictionary * peropertyInfo;
     
@@ -78,7 +78,7 @@ extern BOOL isNull(id value)
     return peropertyInfo;
 }
 
-+(NSString *)propertyDisplayFromProperty:(objc_property_t)property  value:(id)value
++ (NSString *)propertyDisplayFromProperty:(objc_property_t)property  value:(id)value
 {
     id  display = value;
     

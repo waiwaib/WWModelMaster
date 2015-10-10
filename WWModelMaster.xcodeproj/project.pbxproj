@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2D2FE08D1BC74D9E00544693 /* valueTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2FE08C1BC74D9E00544693 /* valueTransform.m */; settings = {ASSET_TAGS = (); }; };
+		2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63441BC8BA6600042AC4 /* WWDatabase.m */; settings = {ASSET_TAGS = (); }; };
+		2D3C63481BC8BACF00042AC4 /* modelAssociateDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */; settings = {ASSET_TAGS = (); }; };
+		2D3C634B1BC8BB1300042AC4 /* WWDBValueAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1E71BBA6CCE00A2D487 /* main.m */; };
 		2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1EA1BBA6CCE00A2D487 /* AppDelegate.m */; };
 		2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1ED1BBA6CCE00A2D487 /* ViewController.m */; };
@@ -24,6 +27,12 @@
 /* Begin PBXFileReference section */
 		2D2FE08B1BC74D9E00544693 /* valueTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = valueTransform.h; sourceTree = "<group>"; };
 		2D2FE08C1BC74D9E00544693 /* valueTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = valueTransform.m; sourceTree = "<group>"; };
+		2D3C63431BC8BA6600042AC4 /* WWDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWDatabase.h; sourceTree = "<group>"; };
+		2D3C63441BC8BA6600042AC4 /* WWDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWDatabase.m; sourceTree = "<group>"; };
+		2D3C63461BC8BACF00042AC4 /* modelAssociateDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modelAssociateDB.h; sourceTree = "<group>"; };
+		2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modelAssociateDB.m; sourceTree = "<group>"; };
+		2D3C63491BC8BB1300042AC4 /* WWDBValueAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWDBValueAdapter.h; sourceTree = "<group>"; };
+		2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWDBValueAdapter.m; sourceTree = "<group>"; };
 		2D9AA1E31BBA6CCE00A2D487 /* WWModelMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWModelMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9AA1E71BBA6CCE00A2D487 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D9AA1E91BBA6CCE00A2D487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +117,12 @@
 				2D9AA2071BBA721B00A2D487 /* jsonModel.m */,
 				2D2FE08B1BC74D9E00544693 /* valueTransform.h */,
 				2D2FE08C1BC74D9E00544693 /* valueTransform.m */,
+				2D3C63431BC8BA6600042AC4 /* WWDatabase.h */,
+				2D3C63441BC8BA6600042AC4 /* WWDatabase.m */,
+				2D3C63461BC8BACF00042AC4 /* modelAssociateDB.h */,
+				2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */,
+				2D3C63491BC8BB1300042AC4 /* WWDBValueAdapter.h */,
+				2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,8 +217,11 @@
 				2D9AA20E1BBA974B00A2D487 /* thirdModel.m in Sources */,
 				2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */,
 				2D9AA20B1BBA923600A2D487 /* superModel.m in Sources */,
+				2D3C63481BC8BACF00042AC4 /* modelAssociateDB.m in Sources */,
 				2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */,
+				2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */,
 				2D9AA2011BBA6D8900A2D487 /* Model.m in Sources */,
+				2D3C634B1BC8BB1300042AC4 /* WWDBValueAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@
 #define WWErrorLog(errDsp) NSLog(@"method:%@ error -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],errDsp);
 #define WWExceptionLog(expDsp) NSLog(@"method:%@ Exception -->%@",[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSASCIIStringEncoding],expDsp);
 
--(id) init
+- (id)init
 {
     if (self = [super init]) {
         [self beforeLoad];
@@ -25,7 +25,7 @@
 #pragma mark - AbstractJsonModelProtocol
 
 
--(instancetype) initWithDictionary:(NSDictionary *)dictionary
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     
     if (self = [self init]) {
@@ -40,7 +40,7 @@
     return self;
 }
 
--(instancetype) initWithJsonString:(NSString *)string
+- (instancetype)initWithJsonString:(NSString *)string
 {
     if (self = [self init]) {
         if (isNull(string)) {
@@ -64,7 +64,7 @@
     return self;
 }
 
--(instancetype) initWithData:(NSData *)data
+- (instancetype)initWithData:(NSData *)data
 {
     if (self = [self init]) {
         if (isNull(data)) {
@@ -86,12 +86,12 @@
     return self;
 }
 
--(NSDictionary *) toDictionary
+- (NSDictionary *)toDictionary
 {
     return [self toDictionaryWithKeys:[self allPropertyNames]];
 }
 
--(NSDictionary *) toDictionaryWithKeys:(NSArray *)propertyNames
+- (NSDictionary *)toDictionaryWithKeys:(NSArray *)propertyNames
 {
     
     NSMutableArray * keysArr = [[NSMutableArray alloc]initWithArray:propertyNames copyItems:YES];
@@ -137,7 +137,7 @@
     return containModel ? [result copy] : [self dictionaryWithValuesForKeys:keysArr];
 }
 
--(NSData *) toData
+- (NSData *)toData
 {
     NSData* jsonData;
     NSError* jsonError;
@@ -154,7 +154,7 @@
     return jsonData;
 }
 
--(NSData *) toDataWithKeys:(NSArray *)propertyNames
+- (NSData *)toDataWithKeys:(NSArray *)propertyNames
 {
     NSData* jsonData;
     NSError* jsonError;
@@ -171,7 +171,7 @@
     return jsonData;
 }
 
--(NSString *) toJsonString
+- (NSString *)toJsonString
 {
     NSData* jsonData;
     NSError* jsonError;
@@ -188,7 +188,7 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
--(NSString *) toJsonStringWithKeys:(NSArray *)propertyNames
+- (NSString *)toJsonStringWithKeys:(NSArray *)propertyNames
 {
     NSData* jsonData = nil;
     NSError* jsonError = nil;
@@ -205,7 +205,7 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
--(NSString *) analysisModelDisplayContent
+- (NSString *)analysisModelDisplayContent
 {
     NSArray * properties = [self allPropertyNames];
     NSMutableString * displayStr = [[NSMutableString alloc]initWithString:@"{\n"];
@@ -261,12 +261,12 @@
     return displayStr;
 }
 #pragma mark - public method
--(void) beforeLoad
+- (void)beforeLoad
 {
     
 }
 
--(void) setPropertyWithDictionary:(NSDictionary *)data
+- (void)setPropertyWithDictionary:(NSDictionary *)data
 {
     if (![data isKindOfClass:[NSDictionary class]]) {
         WWExceptionLog(@"赋值model请使用Dictionary")
@@ -304,7 +304,7 @@
     }];
 }
 
--(void) display
+- (void)display
 {
     const char * modelName = class_getName([self class]);
     
@@ -321,7 +321,7 @@
     return [self copyMethodWithZone:zone];
 }
 
--(id) copyMethodWithZone:(nullable NSZone *)zone
+- (id)copyMethodWithZone:(nullable NSZone *)zone
 {
     id  copy = [[[self class] allocWithZone:zone] init];
     
@@ -342,7 +342,7 @@
  *
  *  @return
  */
--(NSArray *) allPropertyNames
+- (NSArray *)allPropertyNames
 {
     NSMutableArray * properties = [[NSMutableArray alloc]init];
     
@@ -364,7 +364,7 @@
 }
 
 
-- (SEL) creatGetterWithPropertyName: (NSString *) propertyName{
+- (SEL)creatGetterWithPropertyName: (NSString *)propertyName{
     return NSSelectorFromString(propertyName);
 }
 
@@ -373,13 +373,13 @@
  *
  *  @param keyedValues
  */
--(void) setValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues
+- (void)setValuesForKeysWithDictionary:(NSDictionary<NSString *,id> *)keyedValues
 {
     [self setPropertyWithDictionary:keyedValues];
 }
 
 #pragma mark - class method
-+(NSArray *) modelsWithDictionarys:(NSArray *)dicts
++ (NSArray *)modelsWithDictionarys:(NSArray *)dicts
 {
     if (isNull(dicts)) {
         return nil;
@@ -398,7 +398,7 @@
     return models;
 }
 
-+(NSArray *) dictionarysWithModels:(NSArray *)models convertKeys:(NSArray *)keys
++ (NSArray *)dictionarysWithModels:(NSArray *)models convertKeys:(NSArray *)keys
 {
     if (isNull(models)) {
         return nil;

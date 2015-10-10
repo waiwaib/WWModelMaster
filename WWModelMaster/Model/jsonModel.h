@@ -21,7 +21,7 @@
  *
  *  @return model对象
  */
--(instancetype) initWithDictionary:(NSDictionary*)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 
 /**
  *  根据nsdata 初始化model
@@ -30,7 +30,7 @@
  *
  *  @return model对象
  */
--(instancetype) initWithData:(NSData*)data;
+- (instancetype)initWithData:(NSData*)data;
 
 /**
  *  根据json String 初始化model
@@ -39,41 +39,41 @@
  *
  *  @return model对象
  */
--(instancetype) initWithJsonString:(NSString *)string;
+- (instancetype)initWithJsonString:(NSString *)string;
 
 /**
  *  model对象转字典
  *
  *  @return 结果NSDictionary
  */
--(NSDictionary*) toDictionary;
+- (NSDictionary*)toDictionary;
 
--(NSDictionary*) toDictionaryWithKeys:(NSArray*)propertyNames;
+- (NSDictionary*)toDictionaryWithKeys:(NSArray*)propertyNames;
 
 /**
  *  model对象转NSData
  *
  *  @return 结果NSData
  */
--(NSData *) toData;
+- (NSData *)toData;
 
--(NSData *) toDataWithKeys:(NSArray*)propertyNames;
+- (NSData *)toDataWithKeys:(NSArray*)propertyNames;
 
 /**
  *  model对象转json String
  *
  *  @return json格式NSString
  */
--(NSString *) toJsonString;
+- (NSString *)toJsonString;
 
--(NSString *) toJsonStringWithKeys:(NSArray*)propertyNames;
+- (NSString *)toJsonStringWithKeys:(NSArray*)propertyNames;
 
 /**
  *  分析model的内容
  *
  *  @return 返回一个内容描述的字符串
  */
--(NSString *) analysisModelDisplayContent;
+- (NSString *)analysisModelDisplayContent;
 @end
 
 @interface jsonModel : NSObject<JsonModelProtocol>
@@ -81,20 +81,20 @@
 /**
  *  该函数将在init返回前执行;
  */
--(void) beforeLoad;
+- (void)beforeLoad;
 
 /**
  *  根据dictionary设置属性
  *
  *  @param data 属性dictionary
  */
--(void) setPropertyWithDictionary:(NSDictionary *) data;
+- (void)setPropertyWithDictionary:(NSDictionary *)data;
 
 
 /**
  *  输出展示model内容
  */
--(void) display;
+- (void)display;
 
 /****************	类函数	****************/
 
@@ -105,7 +105,7 @@
  *
  *  @return model数组
  */
-+(NSArray *) modelsWithDictionarys:(NSArray *) dicts;
++ (NSArray *)modelsWithDictionarys:(NSArray *)dicts;
 
 /**
  *  将model数组转化为dictionary数组,keys传nil代表转化整个model;
@@ -115,7 +115,7 @@
  *
  *  @return dictionary数组
  */
-+(NSArray *) dictionarysWithModels:(NSArray *) models convertKeys:(NSArray *) keys;
++ (NSArray *)dictionarysWithModels:(NSArray *)models convertKeys:(NSArray *)keys;
 
 
 @end
