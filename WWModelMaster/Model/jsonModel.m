@@ -27,7 +27,14 @@
 
 -(instancetype) initWithDictionary:(NSDictionary *)dictionary
 {
+    
     if (self = [self init]) {
+        if (isNull(dictionary)) {
+            WWErrorLog(@"dictionary can't be nil");
+            
+            return self;
+        }
+        
         [self setPropertyWithDictionary:dictionary];
     }
     return self;
@@ -36,6 +43,12 @@
 -(instancetype) initWithJsonString:(NSString *)string
 {
     if (self = [self init]) {
+        if (isNull(string)) {
+            WWErrorLog(@"json string can't be nil");
+            
+            return self;
+        }
+        
         NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
         
         NSError *err;
@@ -54,6 +67,12 @@
 -(instancetype) initWithData:(NSData *)data
 {
     if (self = [self init]) {
+        if (isNull(data)) {
+            WWErrorLog(@"data can't be nil");
+            
+            return self;
+        }
+        
         NSError * serialErr;
         
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&serialErr];

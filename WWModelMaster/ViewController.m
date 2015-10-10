@@ -54,7 +54,7 @@
 //    NSString * tojsonStr = [model4 toJsonStringWithKeys:@[@"name",@"ae",@"live",@"hfha"]];
     
     //2层嵌套
-    NSDictionary * sDic = @{@"yesOrNo":@1,@"work":@"teacher",@"userInfo":model1,@"arr":@[@"1",@"2"]};
+    NSDictionary * sDic = @{@"yesOrNo":@1,@"work":@"teacher",@"userInfo":model1,@"arr":@[@"1",@"2"],@"dic":@{@"user":model1}};
     superModel * sModel1 = [[superModel alloc]initWithDictionary:sDic];
     [sModel1 display];
     
