@@ -7,7 +7,7 @@
 //
 
 #import "valueTransform.h"
-
+#import "jsonModel.h"
 
 NSString * const constant_propertyClassName = @"propertyClassName";
 NSString * const constant_propertyType = @"propertyType";
@@ -59,7 +59,18 @@ extern BOOL isNull(id value)
     }
     else
     {
-        propertyTypeIndex = 7;
+        Class modelClass = NSClassFromString(propertyAttributeClassName);
+        
+        if ([modelClass isSubclassOfClass:[jsonModel class]]) {
+            
+            propertyTypeIndex = propertyTypeModel;
+        }
+        else
+        {
+            NSLog(@"unkown transform type %@",propertyAttributeClassName);
+        
+            propertyTypeIndex = propertyTypeUnkown;
+        }
     }
     
     peropertyInfo = @{constant_propertyType:[NSNumber numberWithInteger:propertyTypeIndex],constant_propertyClassName:propertyAttributeClassName};
@@ -112,7 +123,9 @@ extern BOOL isNull(id value)
         }
         case propertyTypeUnkown:
         {
-            
+            if ([value respondsToSelector:@selector(stringValue)]) {
+                display = [value stringValue];
+            }
             break;
         }
         default:
