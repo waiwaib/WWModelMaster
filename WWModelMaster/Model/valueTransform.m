@@ -22,6 +22,41 @@ extern BOOL isNull(id value)
     return NO;
 }
 
+extern NSArray * allPropertyNames(id object)
+{
+    NSMutableArray * properties = [[NSMutableArray alloc]init];
+    
+    unsigned int propertyCount = 0;
+    
+    objc_property_t * propertiesTemp = class_copyPropertyList([object class], &propertyCount);
+    
+    for (unsigned int i = 0; i<propertyCount; i++) {
+        objc_property_t  property = propertiesTemp[i];
+        
+        const char * propertyName = property_getName(property);
+        
+        [properties addObject:[NSString stringWithUTF8String:propertyName]];
+    }
+    
+    free(propertiesTemp);
+    
+    return properties;
+}
+
+extern NSArray * allPropertyValues(id object)
+{
+    NSArray * properties = allPropertyNames(object);
+    
+    NSMutableArray * values = [NSMutableArray array];
+    
+    for (NSString * propertyName in properties) {
+        id value = [object valueForKey:propertyName];
+        id valueObj = value ? value : [NSNull null];
+        [values addObject:valueObj];
+    }
+    
+    return values;
+}
 
 + (NSDictionary *)propertyInfoFromProperty:(objc_property_t)property
 {
@@ -46,13 +81,18 @@ extern BOOL isNull(id value)
         //bool类型
         propertyAttributeClassName = @"BOOL";
     }
+    else if([attribute rangeOfString:@"Tq,N,"].length||[attribute rangeOfString:@"TQ,N,"].length||[attribute rangeOfString:@"Td,N,"].length)
+    {
+        //Integer类型
+        propertyAttributeClassName = @"NSInteger";
+    }
     else
     {
         //未收录类型
         propertyAttributeClassName = @"unKown";
     }
     
-    NSArray * types = @[@"unKown",@"NSString",@"NSNumber",@"NSDictionary",@"NSArray",@"NSSet",@"BOOL"];
+    NSArray * types = @[@"unKown",@"NSString",@"NSNumber",@"NSDictionary",@"NSArray",@"NSSet",@"BOOL",@"NSInteger"];
     
     if ([types containsObject:propertyAttributeClassName]) {
         propertyTypeIndex = [types indexOfObject:propertyAttributeClassName];

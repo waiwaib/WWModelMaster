@@ -85,7 +85,7 @@
 
 - (NSDictionary *)toDictionary
 {
-    return [self toDictionaryWithKeys:[self allPropertyNames]];
+    return [self toDictionaryWithKeys:allPropertyNames(self)];
 }
 
 - (NSDictionary *)toDictionaryWithKeys:(NSArray *)propertyNames
@@ -93,7 +93,7 @@
     
     NSMutableArray * keysArr = [[NSMutableArray alloc]initWithArray:propertyNames copyItems:YES];
     NSMutableArray * shouldDelKey = [[NSMutableArray alloc]init];
-    NSArray * properties = [self allPropertyNames];
+    NSArray * properties = allPropertyNames(self);
     for (NSString * key in keysArr) {
         if (![properties containsObject:key]) {
             NSString * expDsp = [NSString stringWithFormat:@"传入了错误的key:%@",key];
@@ -204,7 +204,7 @@
 
 - (NSString *)analysisModelDisplayContent
 {
-    NSArray * properties = [self allPropertyNames];
+    NSArray * properties = allPropertyNames(self);
     NSMutableString * displayStr = [[NSMutableString alloc]initWithString:@"{\n"];
     
     for (int i = 0; i<properties.count; i++) {
@@ -242,6 +242,16 @@
                 BOOL boolValue = [self valueForKey:properties[i]];
                 display = boolValue ? @"YES" : @"NO";
             }
+            else if(propertyTypeInt == [propertyInfo[constant_propertyType] integerValue])
+            {
+                //针对NSInterger int NSUIterger做特殊特殊处理
+                NSInteger iterValue = [[self valueForKey:properties[i]] integerValue];
+                display = [[NSNumber numberWithInteger:iterValue]stringValue];
+            }
+            else if(propertyTypeUnkown == [propertyInfo[constant_propertyType] integerValue])
+            {
+                //可能不属于cocoa object
+            }
             else
             {
                 display = [valueTransform propertyDisplayFromProperty:property value:returnValue];
@@ -270,7 +280,7 @@
         return;
     }
     
-    NSArray * properyNames = [self allPropertyNames];
+    NSArray * properyNames = allPropertyNames(self);
     [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([properyNames containsObject:key]) {
             
@@ -322,7 +332,7 @@
 {
     id  copy = [[[self class] allocWithZone:zone] init];
     
-    NSArray * properties = [self allPropertyNames];
+    NSArray * properties = allPropertyNames(self);
     
     NSDictionary * propertyDic = [self toDictionary];
     
@@ -334,33 +344,6 @@
 }
 
 #pragma mark - private method
-/**
- *  获取类的所有属性名称
- *
- *  @return
- */
-- (NSArray *)allPropertyNames
-{
-    NSMutableArray * properties = [[NSMutableArray alloc]init];
-    
-    unsigned int propertyCount = 0;
-    
-    objc_property_t * propertiesTemp = class_copyPropertyList([self class], &propertyCount);
-    
-    for (unsigned int i = 0; i<propertyCount; i++) {
-        objc_property_t  property = propertiesTemp[i];
-        
-        const char * propertyName = property_getName(property);
-        
-        [properties addObject:[NSString stringWithUTF8String:propertyName]];
-    }
-    
-    free(propertiesTemp);
-    
-    return properties;
-}
-
-
 - (SEL)creatGetterWithPropertyName: (NSString *)propertyName{
     return NSSelectorFromString(propertyName);
 }

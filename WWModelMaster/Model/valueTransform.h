@@ -43,9 +43,13 @@ typedef NS_ENUM(NSInteger, propertyType){
      */
     propertyTypeBool = 6,
     /**
+     *  int类型
+     */
+    propertyTypeInt = 7,
+    /**
      *  Model类型
      */
-    propertyTypeModel = 7
+    propertyTypeModel = 8
 };
 
 
@@ -75,5 +79,24 @@ typedef NS_ENUM(NSInteger, propertyType){
 + (NSString *)propertyDisplayFromProperty:(objc_property_t)property value:(id)value;
 /****************	全局函数	****************/
 
+/**
+ *  检测对象是否为空
+ *
+ *  @return
+ */
 extern BOOL isNull(id value);
+
+/**
+ *  获取类的所有属性名称
+ *
+ *  @return
+ */
+extern NSArray * allPropertyNames(id object);
+
+/**
+ *  获取类的所有属性值
+ *
+ *  @return
+ */
+extern NSArray * allPropertyValues(id object);
 @end

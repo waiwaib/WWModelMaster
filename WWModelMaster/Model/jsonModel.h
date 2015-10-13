@@ -78,6 +78,12 @@
 
 @interface jsonModel : NSObject<JsonModelProtocol>
 
+/** 主键rowId  */
+@property (nonatomic , assign) NSUInteger primaryKey;
+
+/** 是否已保存在DataBase  */
+@property (nonatomic , assign) BOOL existInDB;
+
 /**
  *  该函数将在init返回前执行;
  */

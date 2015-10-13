@@ -10,6 +10,8 @@
 #import "testModel.h"
 #import "superModel.h"
 #import "thirdModel.h"
+
+#import "modelAssociateDB.h"
 @interface ViewController ()
 
 @end
@@ -34,6 +36,9 @@
     
     [model1 display];
     
+    modelAssociateDB * associate = [[modelAssociateDB alloc]init];
+    [associate saveModel:model1];
+    
 //    NSDictionary * modelDic = [model1 toDictionary];
 //    
 //    NSString * str =  [model1 toJsonString];
@@ -53,22 +58,22 @@
     
 //    NSString * tojsonStr = [model4 toJsonStringWithKeys:@[@"name",@"ae",@"live",@"hfha"]];
     
-    //2层嵌套
-    NSDictionary * sDic = @{@"yesOrNo":@1,@"work":@"teacher",@"userInfo":model1,@"arr":@[@"1",@"2"],@"dic":@{@"user":model1}};
-    superModel * sModel1 = [[superModel alloc]initWithDictionary:sDic];
-    [sModel1 display];
-    
-    
-    NSString * mutilModel = [sModel1 toJsonString];
-
-    superModel * sModel2 = [[superModel alloc]initWithJsonString:mutilModel];
-    
-    
-    NSString * sModel2Str = [sModel2 toJsonString];
-    //3层嵌套
-    NSDictionary * thirdDic = @{@"tirdName":@"huihui",@"supe":sModel1};
-    thirdModel * thmodel = [[thirdModel alloc]initWithDictionary:thirdDic];
-    [thmodel display];
+//    //2层嵌套
+//    NSDictionary * sDic = @{@"yesOrNo":@1,@"work":@"teacher",@"userInfo":model1,@"arr":@[@"1",@"2"],@"dic":@{@"user":model1}};
+//    superModel * sModel1 = [[superModel alloc]initWithDictionary:sDic];
+//    [sModel1 display];
+//    
+//    
+//    NSString * mutilModel = [sModel1 toJsonString];
+//
+//    superModel * sModel2 = [[superModel alloc]initWithJsonString:mutilModel];
+//    
+//    
+//    NSString * sModel2Str = [sModel2 toJsonString];
+//    //3层嵌套
+//    NSDictionary * thirdDic = @{@"tirdName":@"huihui",@"supe":sModel1};
+//    thirdModel * thmodel = [[thirdModel alloc]initWithDictionary:thirdDic];
+//    [thmodel display];
 
 }
 
