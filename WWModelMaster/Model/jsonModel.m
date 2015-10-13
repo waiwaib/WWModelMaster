@@ -304,9 +304,11 @@
         }
         else
         {
-            const char * modelName = class_getName([self class]);
-            
-            NSLog(@"赋值:%@-->出现多余数据 key:%@",[NSString stringWithUTF8String:modelName],key);
+            if (![key isEqualToString:@"primaryKey"]) {
+                const char * modelName = class_getName([self class]);
+                
+                NSLog(@"赋值:%@-->出现多余数据 key:%@",[NSString stringWithUTF8String:modelName],key);
+            }
         }
     }];
 }

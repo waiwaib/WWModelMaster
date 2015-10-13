@@ -64,7 +64,7 @@
             [valueDescripte addObject:@"?"];
         }
         
-        NSString * tableName =[NSString stringWithCString:object_getClassName(model) encoding:NSUTF8StringEncoding] ;
+        NSString * tableName =[NSString stringWithCString:object_getClassName(model) encoding:NSUTF8StringEncoding];
         
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (%@) values(%@)", tableName , [properties componentsJoinedByString:@","], [valueDescripte componentsJoinedByString:@","]];
         
@@ -81,8 +81,23 @@
 
 - (NSArray *)selectAll:(Class)modelClass
 {
-    NSMutableArray * result;
-    return result;
+    NSString * sql =  [NSString stringWithFormat:@"SELECT * FROM %@", NSStringFromClass(modelClass)];
+    NSArray * sqlResult = [_dbInstance  executeSql:sql];
+    
+    NSMutableArray * models = [[NSMutableArray alloc]initWithCapacity:sqlResult.count];
+    
+    for (NSDictionary * dictionary in sqlResult) {
+        
+        NSDictionary * modelDict = [WWDBValueAdapter extractSQLDictionary:dictionary forModelClass:modelClass];
+        id model = [[modelClass alloc]initWithDictionary:modelDict];
+        jsonModel *JMTemp = (jsonModel *)model;
+        [JMTemp setPrimaryKey:[dictionary[@"primaryKey"] integerValue]];
+        [JMTemp setExistInDB:YES];
+        
+        [models addObject:model];
+    }
+    
+    return models;
 }
 
 #pragma mark - private method

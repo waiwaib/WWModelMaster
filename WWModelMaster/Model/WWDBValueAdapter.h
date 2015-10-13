@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "valueTransform.h"
 #import "jsonModel.h"
+/**
+ *  一个用来适配sqlite Value与Model Value的工具类
+ */
 @interface WWDBValueAdapter : NSObject
 
 /**
@@ -28,4 +31,14 @@
  *  @return 提供给sqlite的paramters
  */
 + (NSArray *)buildSqlParamWithDictionary:(NSArray *)source;
+
+/**
+ *  将sqlite查询出来的dictionary转化为可以对model对象进行赋值的dictionary;
+ *
+ *  @param soruce     查询出来的dictionary
+ *  @param modelClass model类型class
+ *
+ *  @return 结果dictionary
+ */
++ (NSDictionary *)extractSQLDictionary:(NSDictionary *)soruce forModelClass:(Class) modelClass;
 @end

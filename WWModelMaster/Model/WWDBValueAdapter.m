@@ -83,6 +83,18 @@
                 NSNumber * dateNum = [NSNumber numberWithDouble:[obj timeIntervalSince1970]];
                 [paramters replaceObjectAtIndex:i withObject:dateNum];
             }
+            else if ([obj isKindOfClass:[jsonModel class]])
+            {
+                NSData * objData;
+                objData = [NSJSONSerialization dataWithJSONObject:[obj toDictionary] options:kNilOptions error:&err];
+                if (err) {
+                    throwException(@"exception", err.description);
+                }
+                else
+                {
+                    [paramters replaceObjectAtIndex:i withObject:objData];
+                }
+            }
             else
             {
                 
@@ -97,5 +109,76 @@
         
     }
     return paramters;
+}
++ (NSDictionary *)extractSQLDictionary:(NSDictionary *)soruce forModelClass:(Class)modelClass
+{
+    NSMutableDictionary * modelDict = [[NSMutableDictionary alloc]initWithDictionary:soruce copyItems:YES];
+    
+    [soruce enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        objc_property_t property = class_getProperty(modelClass , [key cStringUsingEncoding:NSUTF8StringEncoding]);
+        
+        NSDictionary * propertyInfo = [valueTransform propertyInfoFromProperty:property];
+        
+        switch ([[propertyInfo objectForKey:constant_propertyType]integerValue]) {
+            case propertyTypeDictionary:
+            {
+                
+                if (isNull(obj)) {
+                    WWExceptionLog(@"data can't be nil");
+                }
+                
+                NSError * serialErr;
+                
+                NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:&serialErr];
+                
+                if(serialErr) {
+                    WWErrorLog(serialErr.description);
+                }
+                else
+                {
+                    [modelDict setObject:dict forKey:key];
+                }
+                break;
+            }
+            case propertyTypeArrray:
+            {
+                NSArray * array = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
+                if (array) {
+                    [modelDict setObject:array forKey:key];
+                }
+                else
+                {
+                    WWExceptionLog(@"sqlite data transform to array appear a exception,cause transfrom result be nil");
+                }
+                break;
+            }
+            case propertyTypeModel:
+            {
+                NSString * modelName=  propertyInfo[constant_propertyClassName];
+                id <JsonModelProtocol> model = [[NSClassFromString(modelName) alloc]initWithData:obj];
+                if (model) {
+                    [modelDict setObject:model forKey:key];
+                }
+                else
+                {
+                    WWExceptionLog(@"sqlite data transform to model object appear a exception,cause transfrom result be nil");
+                }
+                break;
+            }
+            case propertyTypeDate:
+            {
+                NSDate * date = [NSDate dateWithTimeIntervalSince1970:[obj doubleValue]];
+                [modelDict setObject:date forKey:key];
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }];
+    
+    
+    
+    return modelDict;
 }
 @end

@@ -47,9 +47,13 @@ typedef NS_ENUM(NSInteger, propertyType){
      */
     propertyTypeInt = 7,
     /**
+     *  Date类型
+     */
+    propertyTypeDate = 8,
+    /**
      *  Model类型
      */
-    propertyTypeModel = 8
+    propertyTypeModel = 9
 };
 
 
@@ -87,14 +91,14 @@ typedef NS_ENUM(NSInteger, propertyType){
 extern BOOL isNull(id value);
 
 /**
- *  获取类的所有属性名称
+ *  获取对象的所有属性名称
  *
  *  @return
  */
 extern NSArray * allPropertyNames(id object);
 
 /**
- *  获取类的所有属性值
+ *  获取对象的所有属性值
  *
  *  @return
  */

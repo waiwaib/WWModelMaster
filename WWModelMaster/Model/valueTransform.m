@@ -16,8 +16,7 @@ NSString * const constant_propertyType = @"propertyType";
 
 extern BOOL isNull(id value)
 {
-    if (!value) return YES;
-    if ([value isKindOfClass:[NSNull class]]) return YES;
+    if (!value||[value isKindOfClass:[NSNull class]]) return YES;
     
     return NO;
 }
@@ -92,7 +91,7 @@ extern NSArray * allPropertyValues(id object)
         propertyAttributeClassName = @"unKown";
     }
     
-    NSArray * types = @[@"unKown",@"NSString",@"NSNumber",@"NSDictionary",@"NSArray",@"NSSet",@"BOOL",@"NSInteger"];
+    NSArray * types = @[@"unKown",@"NSString",@"NSNumber",@"NSDictionary",@"NSArray",@"NSSet",@"BOOL",@"NSInteger",@"NSDate"];
     
     if ([types containsObject:propertyAttributeClassName]) {
         propertyTypeIndex = [types indexOfObject:propertyAttributeClassName];

@@ -22,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    
     NSDictionary * test = @{@"name":@"waiwai",@"age":@22,@"livePlace":@"中国南京"};
     NSDictionary * test1 = @{@"name":@"huihui",@"livePlace":@"中国南京"};
     
@@ -37,7 +38,22 @@
     [model1 display];
     
     modelAssociateDB * associate = [[modelAssociateDB alloc]init];
-    [associate saveModel:model1];
+    
+    NSArray * allModel = [associate selectAll:[testModel class]];
+    
+    testModel * testm = allModel[0];
+    [testm display];
+    
+    
+    NSArray * allSupModel = [associate selectAll:[superModel class]];
+    
+    superModel * sup1 = allSupModel[0];
+    [sup1 display];
+    
+    NSDictionary * supDic = @{@"userInfo":model1,@"work":@"student",@"scoreInfo":@{@"math":@99}};
+    superModel * sup = [[superModel alloc]initWithDictionary:supDic];
+    
+    [associate saveModel:sup];
     
 //    NSDictionary * modelDic = [model1 toDictionary];
 //    

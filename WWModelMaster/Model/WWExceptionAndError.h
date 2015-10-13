@@ -17,6 +17,12 @@
  */
 @interface WWExceptionAndError : NSObject
 
+/**
+ *  抛出一个异常
+ *
+ *  @param name 异常名字
+ *  @param des  异常描叙
+ */
 extern void throwException(NSString * name,NSString * des);
 
 @end
