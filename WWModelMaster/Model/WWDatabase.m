@@ -123,7 +123,7 @@
     int columnCount = sqlite3_column_count(stmt);
     NSMutableArray *columnTypes = [[NSMutableArray alloc]init];
     for (int i=0; i < columnCount; i++) {
-        [columnTypes addObject:[NSNumber numberWithInt:[self typeForStatement:stmt column:i]]];
+        [columnTypes addObject:[self typeForStatement:stmt atColumn:i]];
     }
     return columnTypes;
 }
@@ -137,29 +137,26 @@
     return columnNames;
 }
 
--(int)typeForStatement:(sqlite3_stmt *)statement column:(int)column {
+-(NSNumber *)typeForStatement:(sqlite3_stmt *)statement atColumn:(int)column {
     const char* columnType = sqlite3_column_decltype(statement, column);
     
     if (columnType != NULL) {
-        return [self columnTypeToInt:[[NSString stringWithUTF8String:columnType] uppercaseString]];
+        return [self columnTypeToNumber:[[NSString stringWithUTF8String:columnType] uppercaseString]];
     }
     
-    return sqlite3_column_type(statement, column);
+    return [NSNumber numberWithInt:sqlite3_column_type(statement, column)];
 }
 
-- (int)columnTypeToInt:(NSString *)columnType {
-    if ([columnType isEqualToString:@"INTEGER"]) {
-        return SQLITE_INTEGER;
-    } else if ([columnType isEqualToString:@"REAL"]) {
-        return SQLITE_FLOAT;
-    } else if ([columnType isEqualToString:@"TEXT"]) {
-        return SQLITE_TEXT;
-    } else if ([columnType isEqualToString:@"BLOB"]) {
-        return SQLITE_BLOB;
-    } else if ([columnType isEqualToString:@"NULL"]) {
-        return SQLITE_NULL;
+- (NSNumber *)columnTypeToNumber:(NSString *)columnType {
+    NSDictionary * clumnTypeDic = @{@"INTEGER":@SQLITE_INTEGER,@"REAL":@SQLITE_FLOAT,@"TEXT":@SQLITE_TEXT,@"BLOB":@SQLITE_BLOB,@"NULL":@SQLITE_NULL};
+    
+    //defualt is @SQLITE_TEXT
+    NSNumber * typeNum = @SQLITE_TEXT;
+    
+    if ([[clumnTypeDic allKeys]containsObject:columnType]) {
+        typeNum = clumnTypeDic[columnType];
     }
-    return SQLITE_TEXT;
+    return typeNum;
 }
 
 -(NSDictionary *)copyValuesFromStatement:(sqlite3_stmt *)statement
@@ -209,7 +206,7 @@
 {
     int expectBindNum = sqlite3_bind_parameter_count(stmt);
     if (expectBindNum != paramters.count) {
-        WWExceptionLog(@"provide paramters not match expect bind number");
+        WWExceptionLog(@"provide paramters not match expected bind number");
         return NO;
     }
     
