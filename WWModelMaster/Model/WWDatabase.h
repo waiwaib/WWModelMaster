@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+/**
+ *  连接database的基类;拥有完整独立的的database操作功能,如需在其他地方单独使用sqlite,可以单独使用该类;
+ */
 @interface WWDatabase : NSObject
 {
     sqlite3 * dataBase;
