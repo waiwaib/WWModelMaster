@@ -14,6 +14,7 @@
  *  连接WWDatabase 与 Model 的类,提供了简单基本的几个model类型在 sqlite中的使用方法,包括增加,删除,更新,查询;如果需要自我执行更多的sql类型,请自己声明WWDatabase对象,执行sql语句;
  */
 @interface modelAssociateDB : NSObject
+
 /** WWDatabase instance */
 @property (nonatomic , retain) WWDatabase * dbInstance;
 
@@ -63,7 +64,18 @@
  *
  *  @return 成功与否
  */
-- (BOOL)updateToNewModel:(id<JsonModelProtocol>) newModel;
+- (BOOL)updateModel:(id<JsonModelProtocol>) newModel;
+
+/**
+ *  根据查询where从句来更新数据库记录,
+ *
+ *  @param modelClass    要更新的model类
+ *  @param updateContent 更新内容模块
+ *  @param where         sql where条件dictionary
+ *
+ *  @return 成功与否
+ */
+- (BOOL)updateModelWithClass:(Class) modelClass Content:(NSDictionary *) updateContent where:(NSDictionary *) where;
 
 /**
  *  根据model class找出数据库中存有的所有该类model;

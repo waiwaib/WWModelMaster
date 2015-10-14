@@ -30,7 +30,7 @@
  *
  *  @return 提供给sqlite的paramters
  */
-+ (NSArray *)buildSqlParamWithDictionary:(NSArray *)source;
++ (NSArray *)buildSqlParamWithSoruce:(NSArray *)source;
 
 /**
  *  将sqlite查询出来的dictionary转化为可以对model对象进行赋值的dictionary;
@@ -41,4 +41,13 @@
  *  @return 结果dictionary
  */
 + (NSDictionary *)extractSQLDictionary:(NSDictionary *)soruce forModelClass:(Class) modelClass;
+
+/**
+ *  将dictionary转为提供给sqlite的dictionary
+ *
+ *  @param soruce 源dictionary
+ *
+ *  @return 结果dictionary
+ */
++ (NSDictionary *)transferNormarlDictionaryToSqlDictionary:(NSDictionary *)soruce;
 @end

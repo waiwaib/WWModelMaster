@@ -37,13 +37,25 @@
     
     [model1 display];
     
+    
+    
     modelAssociateDB * associate = [[modelAssociateDB alloc]init];
+    
+    //[associate saveModel:model1];
     
     NSArray * allModel = [associate selectAll:[testModel class]];
     
     testModel * testm = allModel[0];
+    
     [testm display];
     
+    testm.name = @"huihui";
+    
+    [testm display];
+    
+    [associate updateModel:testm];
+    
+    [associate deleteModel:testm];
     
     NSArray * allSupModel = [associate selectAll:[superModel class]];
     

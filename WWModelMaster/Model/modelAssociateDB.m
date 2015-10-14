@@ -41,7 +41,7 @@
 - (BOOL)saveModel:(id<JsonModelProtocol>)model
 {
     if (isNull(model)) {
-        WWExceptionLog(@"you can't svae a nil model object");
+        WWExceptionLog(@"you can't save a nil model object");
         return NO;
     }
     
@@ -51,7 +51,7 @@
     
     if (JMTemp.existInDB) {
         //already exist in database,update record;
-        [self updateToNewModel:model];
+        [self updateModel:model];
         return NO;
     }
     else
@@ -69,7 +69,7 @@
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (%@) values(%@)", tableName , [properties componentsJoinedByString:@","], [valueDescripte componentsJoinedByString:@","]];
         
         NSArray * values = allPropertyValues(model);
-        NSArray * paramters = [WWDBValueAdapter buildSqlParamWithDictionary:values];
+        NSArray * paramters = [WWDBValueAdapter buildSqlParamWithSoruce:values];
         [_dbInstance executeSql:sql paramters:paramters];
     }
     
@@ -100,8 +100,73 @@
     return models;
 }
 
-#pragma mark - private method
+- (BOOL)deleteModel:(id<JsonModelProtocol>)model
+{
+    jsonModel * JM = (jsonModel *)model;
+    if (!JM.existInDB) {
+        WWExceptionLog(@"the model object you delete is not exist in DB");
+        return NO;
+    }
+    
+    NSString * tableName =[NSString stringWithCString:object_getClassName(model) encoding:NSUTF8StringEncoding];
+    NSString * sql =  [NSString stringWithFormat:@"DELETE FROM %@  WHERE primaryKey=%ld", tableName,JM.primaryKey];
+    
+    [_dbInstance executeSql:sql];
+    JM.primaryKey = 0 ;
+    JM.existInDB = NO;
+    return YES;
+}
 
+- (BOOL)updateModel:(id<JsonModelProtocol>)newModel
+{
+    if (isNull(newModel)) {
+        WWExceptionLog(@"you can't update a nil model object");
+        return NO;
+    }
+    jsonModel * JM = (jsonModel *)newModel;
+    if (!JM.existInDB) {
+        WWExceptionLog(@"the model object you want update is not exist in DB,now try to store it to database");
+        return [self saveModel:newModel];
+    }
+    else
+    {
+        return [self updateModelWithClass:[newModel class] Content:[newModel toDictionary] where:@{@"primaryKey":[NSNumber numberWithInteger:JM.primaryKey]}];
+    }
+}
+
+- (BOOL)updateModelWithClass:(Class)modelClass Content:(NSDictionary *)updateContent where:(NSDictionary *)where
+{
+    if (isNull(updateContent)) {
+        WWExceptionLog(@"you can't use update content with  nil NSDictionary");
+        return NO;
+    }
+    //get sql param names and values
+    NSArray * paramNames = [updateContent allKeys];
+    NSArray * paramValues = [WWDBValueAdapter buildSqlParamWithSoruce:[updateContent allValues]];
+    
+    NSString * setContent = [[paramNames componentsJoinedByString:@" = ?, "] stringByAppendingString:@" = ?"];
+    
+    NSString * tableName =NSStringFromClass(modelClass);
+    NSString * whereSql = [self bulidWhereString:where];
+    
+    if (isNull(whereSql)) {
+        WWExceptionLog(@"you can't execute the sql with a illegal where clauses");
+        return NO;
+    }
+    
+    NSString * sql =  [NSString stringWithFormat:@"UPDATE %@ SET %@ %@", tableName,setContent,whereSql];
+    
+    [_dbInstance executeSql:sql paramters:paramValues];
+    
+    return YES;
+}
+
+#pragma mark - private method
+/**
+ *  根据model创建表
+ *
+ *  @param model
+ */
 - (void)createTableUseModel:(id<JsonModelProtocol>) model;
 {
     //check table already exist?
@@ -119,6 +184,13 @@
     [_dbInstance executeSql:sql];
 }
 
+/**
+ *  根据model构建表的创建类型描叙 array
+ *
+ *  @param model
+ *
+ *  @return
+ */
 - (NSArray *) bulidTableSQLProperty:(id<JsonModelProtocol>) model
 {
     NSMutableArray * tableProperty = [NSMutableArray array];
@@ -145,5 +217,38 @@
     free(propertiesTemp);
     
     return tableProperty;
+}
+
+/**
+ *  将where判断dictionary转为string描述,这里支持 NSNumber,NSString 类型的where条件;
+ *
+ *  @param where
+ *
+ *  @return 结果;
+ */
+- (NSString *) bulidWhereString:(NSDictionary *)where
+{
+    NSMutableString * result = [NSMutableString string];
+    
+    __block BOOL firstItemAdd;
+    
+    [where enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSString class]]) {
+            
+            [result appendString:firstItemAdd ? [NSString stringWithFormat:@"AND %@ = %@",key,obj] : [NSString stringWithFormat:@"WHERE %@ = %@",key,obj]];
+            firstItemAdd = YES;
+        }
+        else if ([obj isKindOfClass:[NSNumber class]])
+        {
+            [result appendString:firstItemAdd ? [NSString stringWithFormat:@"AND %@ = %f",key,[obj doubleValue]] : [NSString stringWithFormat:@"WHERE %@ = %f",key,[obj doubleValue]]];
+            firstItemAdd = YES;
+        }
+        else
+        {
+            WWErrorLog(@"you had provide a error format 'where' dictionary");
+            return;
+        }
+    }];
+    return result;
 }
 @end

@@ -105,6 +105,12 @@
             [result addObject:[self copyValuesFromStatement:stmt columnTypes:columnTypes columnNames:columnNames]];
         }
     }
+    else
+    {
+        NSString * sqliteErr = [NSString stringWithCString:sqlite3_errmsg(dataBase) encoding:NSUTF8StringEncoding];
+        NSString * dbErrorDes =[NSString stringWithFormat:@"sqlite execute error:%@",sqliteErr] ;
+        WWErrorLog(dbErrorDes);
+    }
     sqlite3_finalize(stmt);//release  sqlite3 resoures;
     
     return result;

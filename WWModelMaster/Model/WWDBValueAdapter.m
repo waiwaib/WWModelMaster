@@ -48,7 +48,7 @@
     return @"TEXT";
 }
 
-+ (NSArray *)buildSqlParamWithDictionary:(NSArray *)source
++ (NSArray *)buildSqlParamWithSoruce:(NSArray *)source
 {
     NSMutableArray * paramters = [[NSMutableArray alloc]initWithArray:source copyItems:YES];
     for (int i = 0; i<paramters.count; i++) {
@@ -148,7 +148,7 @@
                 }
                 else
                 {
-                    WWExceptionLog(@"sqlite data transform to array appear a exception,cause transfrom result be nil");
+                    WWExceptionLog(@"sqlite data transform to array appear a exception");
                 }
                 break;
             }
@@ -161,7 +161,7 @@
                 }
                 else
                 {
-                    WWExceptionLog(@"sqlite data transform to model object appear a exception,cause transfrom result be nil");
+                    WWExceptionLog(@"sqlite data transform to model object appear a exception");
                 }
                 break;
             }
@@ -176,9 +176,11 @@
                 break;
         }
     }];
-    
-    
-    
     return modelDict;
+}
+
++ (NSDictionary *)transferNormarlDictionaryToSqlDictionary:(NSDictionary *)soruce
+{
+    return nil;
 }
 @end
