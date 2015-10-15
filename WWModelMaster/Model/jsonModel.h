@@ -6,6 +6,8 @@
 //  Copyright © 2015年 歪歪. All rights reserved.
 //
 
+#define defualtPrimayKey @"primaryKey"
+
 #import <Foundation/Foundation.h>
 
 /**

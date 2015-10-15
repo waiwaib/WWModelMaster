@@ -81,9 +81,19 @@
 
 - (NSArray *)selectAll:(NSString *)tableName
 {
-    NSString * sql =  [NSString stringWithFormat:@"SELECT * FROM %@", tableName];
+    return [self selectWithModelTable:tableName where:nil groupBy:nil];
+}
+
+- (NSArray *)selectWithModelTable:(NSString *)tableName where:(NSDictionary *)where groupBy:(NSString *)group
+{
+    //bulid sql and execute sql
+    NSString * whereSql = [self bulidWhereString:where];
+    NSString * groupSql = isNull(group) ? @"": [NSString stringWithFormat:@"GROUP BY %@",group];
+    
+    NSString * sql =  [NSString stringWithFormat:@"SELECT * FROM %@ %@ %@", tableName,whereSql,groupSql];
     NSArray * sqlResult = [_dbInstance  executeSql:sql];
     
+    //tranfer dictionary objects to models;
     NSMutableArray * models = [[NSMutableArray alloc]initWithCapacity:sqlResult.count];
     
     for (NSDictionary * dictionary in sqlResult) {
@@ -91,7 +101,7 @@
         NSDictionary * modelDict = [WWDBValueAdapter extractSQLDictionary:dictionary forModelClass:NSClassFromString(tableName)];
         id model = [[NSClassFromString(tableName) alloc]initWithDictionary:modelDict];
         jsonModel *JMTemp = (jsonModel *)model;
-        [JMTemp setPrimaryKey:[dictionary[@"primaryKey"] integerValue]];
+        [JMTemp setPrimaryKey:[dictionary[defualtPrimayKey] integerValue]];
         [JMTemp setExistInDB:YES];
         
         [models addObject:model];
@@ -108,12 +118,16 @@
         return NO;
     }
     
-    NSString * tableName =[NSString stringWithCString:object_getClassName(model) encoding:NSUTF8StringEncoding];
-    NSString * sql =  [NSString stringWithFormat:@"DELETE FROM %@  WHERE primaryKey=%ld", tableName,JM.primaryKey];
+    return [self deleteWithModelTable:JM.tableName where:@{defualtPrimayKey:[NSNumber numberWithUnsignedInteger:JM.primaryKey]}];
+}
+
+- (BOOL) deleteWithModelTable:(NSString *)tableName where:(NSDictionary *)where
+{
+    //bulid sql and execute sql
+    NSString * whereSql = [self bulidWhereString:where];
+    NSString * sql =  [NSString stringWithFormat:@"DELETE FROM %@ %@", tableName,whereSql];
     
     [_dbInstance executeSql:sql];
-    JM.primaryKey = 0 ;
-    JM.existInDB = NO;
     return YES;
 }
 
@@ -130,7 +144,7 @@
     }
     else
     {
-        return [self updateWithModelTable:JM.tableName Content:[newModel toDictionary] where:@{@"primaryKey":[NSNumber numberWithInteger:JM.primaryKey]}];
+        return [self updateWithModelTable:JM.tableName Content:[newModel toDictionary] where:@{defualtPrimayKey:[NSNumber numberWithInteger:JM.primaryKey]}];
     }
 }
 
@@ -227,6 +241,10 @@
  */
 - (NSString *) bulidWhereString:(NSDictionary *)where
 {
+    if (isNull(where)) {
+        return @"";
+    }
+    
     NSMutableString * result = [NSMutableString string];
     
     __block BOOL firstItemAdd;

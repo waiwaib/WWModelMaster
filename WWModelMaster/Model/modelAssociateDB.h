@@ -58,6 +58,16 @@
 - (BOOL)deleteModel:(id<JsonModelProtocol>) model;
 
 /**
+ *  根据where查询从句来删除model table中的相关记录
+ *
+ *  @param tableName 要查询的model类tableName
+ *  @param where     sql where条件dictionary
+ *
+ *  @return 成功与否
+ */
+- (BOOL)deleteWithModelTable:(NSString *)tableName where:(NSDictionary *)where;
+
+/**
  *  更新一个在数据库中存在的model对象;(不存在即保存)
  *
  *  @param newModel
@@ -80,11 +90,23 @@
 /**
  *  根据model tableNmae找出数据库中的所有该类记录;
  *
- *  @param modelClass 要查询的model类tableName
+ *  @param tableName 要查询的model类tableName
  *
  *  @return 结果model数组
  */
 - (NSArray *)selectAll:(NSString *) tableName;
+
+
+/**
+ *  根据model的tableName查询model记录,基本完善的select方法,提供where和group参数选项
+ *
+ *  @param tableName 要查询的model类tableName
+ *  @param where     sql where条件dictionary
+ *  @param group     sql group依据列名
+ *
+ *  @return 结果model数组
+ */
+- (NSArray *) selectWithModelTable:(NSString *) tableName where:(NSDictionary *) where groupBy:(NSString *) group;
 
 /**
  *  根据主键rowId和model类查询精确目标model对象
