@@ -10,4 +10,10 @@
 
 @implementation contactPersonModel
 
+- (NSString *)birthdayStr
+{
+    NSDateFormatter *dateInvFtr = [[NSDateFormatter alloc] init];
+    [dateInvFtr setDateFormat:@"YYYY-MM-dd"];
+    return [dateInvFtr  stringFromDate:self.birthday];
+}
 @end

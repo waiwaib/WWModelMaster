@@ -7,107 +7,99 @@
 //
 
 #import "ViewController.h"
-#import "testModel.h"
-#import "superModel.h"
-#import "thirdModel.h"
-
+#import "contactPersonModel.h"
 #import "modelAssociateDB.h"
+
+#import "contactDetailCtl.h"
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    
-    NSDictionary * test = @{@"name":@"waiwai",@"age":@22,@"livePlace":@"中国南京"};
-    NSDictionary * test1 = @{@"name":@"huihui",@"livePlace":@"中国南京"};
-    
-//    NSArray * models = [testModel modelsWithDictionarys:@[test,test1]];
-//    
-//    NSDictionary * dicts = [testModel dictionarysWithModels:models convertKeys:@[@"name",@"age"]];
-    
-    testModel * model1 = [[testModel alloc]init];
-    [model1 setValuesForKeysWithDictionary:test];
-    
-    //[model1 setPropertyWithDictionary:test];
-    
-    [model1 display];
-    
-    
-    
-    modelAssociateDB * associate = [[modelAssociateDB alloc]init];
-    
-    //[associate saveModel:model1];
-    
-    NSArray * allModel = [associate selectAll:[testModel class]];
-    
-    testModel * testm = allModel[0];
-    
-    [testm display];
-    
-    testm.name = @"huihui";
-    
-    [testm display];
-    
-    [associate updateModel:testm];
-    
-    [associate deleteModel:testm];
-    
-    NSArray * allSupModel = [associate selectAll:[superModel class]];
-    
-    superModel * sup1 = allSupModel[0];
-    [sup1 display];
-    
-    NSDictionary * supDic = @{@"userInfo":model1,@"work":@"student",@"scoreInfo":@{@"math":@99}};
-    superModel * sup = [[superModel alloc]initWithDictionary:supDic];
-    
-    [associate saveModel:sup];
-    
-//    NSDictionary * modelDic = [model1 toDictionary];
-//    
-//    NSString * str =  [model1 toJsonString];
-    
-//    NSData * data = [model1 toData];
-//    
-//    
-//    testModel * model2 = [[testModel alloc]initWithDictionary:test];
-//    [model2 display];
-//    
-//    NSString * jsonStr = @"{\"name\":\"huihui\",\"age\":23,\"livePlace\":\"中国南京\"}";
-//    testModel * model3 = [[testModel alloc]initWithJsonString:jsonStr];
-//    [model3 display];
-//    
-//    testModel * model4 = [[testModel alloc]initWithData:data];
-//    [model4 display];
-    
-//    NSString * tojsonStr = [model4 toJsonStringWithKeys:@[@"name",@"ae",@"live",@"hfha"]];
-    
-//    //2层嵌套
-//    NSDictionary * sDic = @{@"yesOrNo":@1,@"work":@"teacher",@"userInfo":model1,@"arr":@[@"1",@"2"],@"dic":@{@"user":model1}};
-//    superModel * sModel1 = [[superModel alloc]initWithDictionary:sDic];
-//    [sModel1 display];
-//    
-//    
-//    NSString * mutilModel = [sModel1 toJsonString];
-//
-//    superModel * sModel2 = [[superModel alloc]initWithJsonString:mutilModel];
-//    
-//    
-//    NSString * sModel2Str = [sModel2 toJsonString];
-//    //3层嵌套
-//    NSDictionary * thirdDic = @{@"tirdName":@"huihui",@"supe":sModel1};
-//    thirdModel * thmodel = [[thirdModel alloc]initWithDictionary:thirdDic];
-//    [thmodel display];
-
+    [self configData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mrak - table view delegate and data soruce
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _contacts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    contactPersonModel * model = [_contacts objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"名字: %@ 号码:%@ 地区:%@ 生日:%@",model.name,model.phone,model.city,[model birthdayStr]];
+    return cell;
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_associate deleteModel:_contacts[indexPath.row]];
+    [_contacts removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    contactDetailCtl * detail = [[contactDetailCtl alloc]init];
+    detail.model = [_contacts objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:detail animated:YES];
+}
+#pragma mark - getter
+- (modelAssociateDB *)associate
+{
+    if (!_associate) {
+        _associate = [[modelAssociateDB alloc]init];
+    }
+    return _associate;
+}
+
+#pragma mark - action
+
+- (IBAction)addNewContact:(id)sender {
+}
+
+#pragma mark - private method
+
+- (void) configData
+{
+    _contacts = [NSMutableArray array];
+    
+    [_contacts addObjectsFromArray:[self.associate selectAll:contactPersonModel.tableName]];
+    
+    //没有数据的情况,初始增加几个新的数据
+    if (0 == _contacts.count) {
+        NSDictionary * dcit1 = @{@"name":@"waiwai",@"phone":@"18888888888",@"city":@"nanjing",@"birthday":[NSDate date]};
+    
+        NSDictionary * dcit2 = @{@"name":@"huihui",@"phone":@"13666666666",@"city":@"beijing",@"birthday":[NSDate date]};
+        
+        NSArray * models = [contactPersonModel modelsWithDictionarys:@[dcit1,dcit2]];
+        
+        for (contactPersonModel * model in models) {
+            [self.associate saveModel:model];
+        }
+        //
+        [_contacts addObjectsFromArray:[self.associate selectAll:contactPersonModel.tableName]];
+    }
+}
+
 
 @end

@@ -19,4 +19,9 @@
 @property (nonatomic , copy) NSString * city;
 /** 生日  */
 @property (nonatomic , copy) NSDate * birthday;
+
+/**
+ *  返回生日字符串描述
+ */
+- (NSString *)birthdayStr;
 @end

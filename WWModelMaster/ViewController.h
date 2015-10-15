@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "modelAssociateDB.h"
+@interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@interface ViewController : UIViewController
+@property (nonatomic , retain) NSMutableArray * contacts;
 
+@property (nonatomic , retain , getter=associate) modelAssociateDB * associate;
 
+- (IBAction)addNewContact:(id)sender;
 @end
 

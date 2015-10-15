@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eY4-vq-ha9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,11 +16,75 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tZr-Jo-zoi">
+                                <rect key="frame" x="20" y="80" width="560" height="520"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Snc-Ua-Zl5"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Uwq-Sb-MIE"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="这是一个演示案例(model与数据库操作)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHT-SO-1mv">
+                                <rect key="frame" x="20" y="28" width="560" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="cxD-ba-DJw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HW-2O-GLC">
+                                <rect key="frame" x="277" y="48" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="RUT-ZW-i50"/>
+                                </constraints>
+                                <state key="normal" title="新增"/>
+                                <connections>
+                                    <action selector="addNewContact:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pum-Xe-BXn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tZr-Jo-zoi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3R8-mA-9BH"/>
+                            <constraint firstItem="PHT-SO-1mv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="HaG-BD-Mrb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tZr-Jo-zoi" secondAttribute="bottom" id="KYb-9s-Sy0"/>
+                            <constraint firstItem="tZr-Jo-zoi" firstAttribute="top" secondItem="PHT-SO-1mv" secondAttribute="bottom" constant="31" id="PVY-iz-NSb"/>
+                            <constraint firstItem="PHT-SO-1mv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WXy-K6-pNR"/>
+                            <constraint firstItem="9HW-2O-GLC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Znp-pt-W67"/>
+                            <constraint firstItem="tZr-Jo-zoi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="aby-7h-nAp"/>
+                            <constraint firstItem="tZr-Jo-zoi" firstAttribute="top" secondItem="9HW-2O-GLC" secondAttribute="bottom" constant="2" id="eb9-Lz-i8v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tZr-Jo-zoi" secondAttribute="trailing" id="nvh-7v-anL"/>
+                            <constraint firstItem="PHT-SO-1mv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vQq-CS-cgu"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kLo-mX-a8d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="317" y="-9"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Wpg-5S-Ai6">
+            <objects>
+                <navigationController id="eY4-vq-ha9" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FfU-Nh-szl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hcW-NB-8eo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PYF-Xh-vuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-391" y="417"/>
         </scene>
     </scenes>
 </document>

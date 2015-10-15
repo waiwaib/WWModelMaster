@@ -44,6 +44,13 @@
 #pragma mark - sql methods
 - (void)open
 {
+    // config sqlite to work with the same connection on multiple threads
+    if (sqlite3_config(SQLITE_CONFIG_SERIALIZED) == SQLITE_OK) {
+        NSLog(@"Can  use sqlite on multiple threads");
+    } else {
+        NSLog(@"UNABLE to use sqlite on multiple threads");
+    }
+    //try to open database connection
     NSFileManager * fileMgr = [NSFileManager defaultManager];
     if (![fileMgr isExecutableFileAtPath:dbPath]) {
         
