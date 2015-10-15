@@ -319,6 +319,11 @@
     
     NSLog(@"%@:%@",[NSString stringWithUTF8String:modelName],[self analysisModelDisplayContent]);
 }
+
+- (NSString *)getTableName
+{
+    return NSStringFromClass([self class]);
+}
 #pragma mark - coping delegate
 - (id)copyWithZone:(nullable NSZone *)zone
 {
@@ -396,5 +401,10 @@
     }
     
     return dicts;
+}
+
++ (NSString *)tableName
+{
+    return NSStringFromClass([self class]);
 }
 @end

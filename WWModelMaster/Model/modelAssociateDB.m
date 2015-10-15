@@ -79,17 +79,17 @@
 }
 
 
-- (NSArray *)selectAll:(Class)modelClass
+- (NSArray *)selectAll:(NSString *)tableName
 {
-    NSString * sql =  [NSString stringWithFormat:@"SELECT * FROM %@", NSStringFromClass(modelClass)];
+    NSString * sql =  [NSString stringWithFormat:@"SELECT * FROM %@", tableName];
     NSArray * sqlResult = [_dbInstance  executeSql:sql];
     
     NSMutableArray * models = [[NSMutableArray alloc]initWithCapacity:sqlResult.count];
     
     for (NSDictionary * dictionary in sqlResult) {
         
-        NSDictionary * modelDict = [WWDBValueAdapter extractSQLDictionary:dictionary forModelClass:modelClass];
-        id model = [[modelClass alloc]initWithDictionary:modelDict];
+        NSDictionary * modelDict = [WWDBValueAdapter extractSQLDictionary:dictionary forModelClass:NSClassFromString(tableName)];
+        id model = [[NSClassFromString(tableName) alloc]initWithDictionary:modelDict];
         jsonModel *JMTemp = (jsonModel *)model;
         [JMTemp setPrimaryKey:[dictionary[@"primaryKey"] integerValue]];
         [JMTemp setExistInDB:YES];
@@ -130,11 +130,11 @@
     }
     else
     {
-        return [self updateModelWithClass:[newModel class] Content:[newModel toDictionary] where:@{@"primaryKey":[NSNumber numberWithInteger:JM.primaryKey]}];
+        return [self updateWithModelTable:JM.tableName Content:[newModel toDictionary] where:@{@"primaryKey":[NSNumber numberWithInteger:JM.primaryKey]}];
     }
 }
 
-- (BOOL)updateModelWithClass:(Class)modelClass Content:(NSDictionary *)updateContent where:(NSDictionary *)where
+- (BOOL)updateWithModelTable:(NSString *) tableName Content:(NSDictionary *)updateContent where:(NSDictionary *)where
 {
     if (isNull(updateContent)) {
         WWExceptionLog(@"you can't use update content with  nil NSDictionary");
@@ -146,7 +146,6 @@
     
     NSString * setContent = [[paramNames componentsJoinedByString:@" = ?, "] stringByAppendingString:@" = ?"];
     
-    NSString * tableName =NSStringFromClass(modelClass);
     NSString * whereSql = [self bulidWhereString:where];
     
     if (isNull(whereSql)) {
@@ -235,7 +234,7 @@
     [where enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {
             
-            [result appendString:firstItemAdd ? [NSString stringWithFormat:@"AND %@ = %@",key,obj] : [NSString stringWithFormat:@"WHERE %@ = %@",key,obj]];
+            [result appendString:firstItemAdd ? [NSString stringWithFormat:@"AND %@ = '%@'",key,obj] : [NSString stringWithFormat:@"WHERE %@ = '%@'",key,obj]];
             firstItemAdd = YES;
         }
         else if ([obj isKindOfClass:[NSNumber class]])

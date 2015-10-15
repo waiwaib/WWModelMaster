@@ -69,22 +69,22 @@
 /**
  *  根据查询where从句来更新数据库记录,
  *
- *  @param modelClass    要更新的model类
+ *  @param tableName     要更新的model类tableName
  *  @param updateContent 更新内容模块
  *  @param where         sql where条件dictionary
  *
  *  @return 成功与否
  */
-- (BOOL)updateModelWithClass:(Class) modelClass Content:(NSDictionary *) updateContent where:(NSDictionary *) where;
+- (BOOL)updateWithModelTable:(NSString *) tableName Content:(NSDictionary *) updateContent where:(NSDictionary *) where;
 
 /**
- *  根据model class找出数据库中存有的所有该类model;
+ *  根据model tableNmae找出数据库中的所有该类记录;
  *
- *  @param modelClass model查询目标class
+ *  @param modelClass 要查询的model类tableName
  *
  *  @return 结果model数组
  */
-- (NSArray *)selectAll:(Class) modelClass;
+- (NSArray *)selectAll:(NSString *) tableName;
 
 /**
  *  根据主键rowId和model类查询精确目标model对象

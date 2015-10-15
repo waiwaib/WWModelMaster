@@ -84,6 +84,8 @@
 /** 是否已保存在DataBase  */
 @property (nonatomic , assign) BOOL existInDB;
 
+/** tableName属性  */
+@property (nonatomic , retain, readonly ,getter = getTableName) NSString * tableName;
 /**
  *  该函数将在init返回前执行;
  */
@@ -102,6 +104,10 @@
  */
 - (void)display;
 
+/**
+ *  tableName属性get方法
+ */
+- (NSString *)getTableName;
 /****************	类函数	****************/
 
 /**
@@ -123,5 +129,8 @@
  */
 + (NSArray *)dictionarysWithModels:(NSArray *)models convertKeys:(NSArray *)keys;
 
-
+/**
+ *  该model对应的table name;
+ */
++ (NSString *)tableName;
 @end
