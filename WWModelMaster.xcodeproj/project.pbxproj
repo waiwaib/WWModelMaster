@@ -14,6 +14,7 @@
 		2D3C634E1BC8C29900042AC4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */; };
 		2D3C63501BC8C31D00042AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3C634F1BC8C31D00042AC4 /* libz.tbd */; };
 		2D3C63531BC905CA00042AC4 /* WWExceptionAndError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */; settings = {ASSET_TAGS = (); }; };
+		2D8F7AFE1BCF7FA9002582DE /* contactPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1E71BBA6CCE00A2D487 /* main.m */; };
 		2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1EA1BBA6CCE00A2D487 /* AppDelegate.m */; };
 		2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1ED1BBA6CCE00A2D487 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 		2D3C634F1BC8C31D00042AC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2D3C63511BC905CA00042AC4 /* WWExceptionAndError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWExceptionAndError.h; sourceTree = "<group>"; };
 		2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWExceptionAndError.m; sourceTree = "<group>"; };
+		2D8F7AFC1BCF7FA9002582DE /* contactPersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactPersonModel.h; sourceTree = "<group>"; };
+		2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactPersonModel.m; sourceTree = "<group>"; };
 		2D9AA1E31BBA6CCE00A2D487 /* WWModelMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWModelMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9AA1E71BBA6CCE00A2D487 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D9AA1E91BBA6CCE00A2D487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8F7AFB1BCF7F3E002582DE /* contactPerson */ = {
+			isa = PBXGroup;
+			children = (
+				2D8F7AFC1BCF7FA9002582DE /* contactPersonModel.h */,
+				2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */,
+			);
+			name = contactPerson;
+			sourceTree = "<group>";
+		};
 		2D9AA1DA1BBA6CCE00A2D487 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +106,7 @@
 		2D9AA1E51BBA6CCE00A2D487 /* WWModelMaster */ = {
 			isa = PBXGroup;
 			children = (
+				2D8F7AFB1BCF7F3E002582DE /* contactPerson */,
 				2D9AA2021BBA6E8E00A2D487 /* testModel */,
 				2D9AA1FE1BBA6D8000A2D487 /* Model */,
 				2D9AA1E91BBA6CCE00A2D487 /* AppDelegate.h */,
@@ -230,6 +243,7 @@
 				2D9AA20E1BBA974B00A2D487 /* thirdModel.m in Sources */,
 				2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */,
 				2D9AA20B1BBA923600A2D487 /* superModel.m in Sources */,
+				2D8F7AFE1BCF7FA9002582DE /* contactPersonModel.m in Sources */,
 				2D3C63481BC8BACF00042AC4 /* modelAssociateDB.m in Sources */,
 				2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */,
 				2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */,
