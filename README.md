@@ -7,7 +7,7 @@ modelAssociateDB model对象使用sqlite持久化的操作;
 
 use example:
 
-1.model使用
+##1.model使用
 
 testModel继承自model;
 
@@ -100,13 +100,13 @@ NSArray * models = [testModel modelsWithDictionarys:@[test,test1]];
     
 NSDictionary * dicts = [testModel dictionarysWithModels:models convertKeys:@[@"name"]];
 
-2,WWDatabase 介绍
+##2,WWDatabase 介绍
 
 提供了WWDatabase,提供了数据库连接与sql执行的公共入口;
 
 独立模块,可以单独使用WWDatabase来实现自己的更多需求数据库功能;
 
-2,modelAssociateDB 介绍
+##2,modelAssociateDB 介绍
 
 这里提供了model连接WWDatabase使用sqlite实现数据持久化的方案;
 
