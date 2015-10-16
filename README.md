@@ -1,11 +1,14 @@
 # WWModelMaster
 Model 提供了一个轻量级的model基类;支持多种数据格式;
-WWDatabase 提供了数据库连接与sql执行的公共入口;;
+
+WWDatabase 提供了数据库连接与sql执行的公共入口;
+
 modelAssociateDB model对象使用sqlite持久化的操作;
 
 use example:
 
 1.model使用
+
 testModel继承自model;
 
 NSDictionary * test = @{@"name":@"waiwai",@"age":@22,@"livePlace":@"中国南京",@"sex":@1};
