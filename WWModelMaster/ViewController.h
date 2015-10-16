@@ -15,5 +15,7 @@
 @property (nonatomic , retain , getter=associate) modelAssociateDB * associate;
 
 - (IBAction)addNewContact:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITableView *contactTable;
 @end
 

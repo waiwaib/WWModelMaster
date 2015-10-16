@@ -16,6 +16,7 @@
 		2D3C63531BC905CA00042AC4 /* WWExceptionAndError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */; settings = {ASSET_TAGS = (); }; };
 		2D8F7AFE1BCF7FA9002582DE /* contactPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */; settings = {ASSET_TAGS = (); }; };
 		2D8F7B021BCF846F002582DE /* contactDetailCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F7B011BCF846F002582DE /* contactDetailCtl.m */; settings = {ASSET_TAGS = (); }; };
+		2D8F7B051BCF9C55002582DE /* TimeCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F7B041BCF9C55002582DE /* TimeCustomActionSheet.m */; settings = {ASSET_TAGS = (); }; };
 		2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1E71BBA6CCE00A2D487 /* main.m */; };
 		2D9AA1EB1BBA6CCE00A2D487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1EA1BBA6CCE00A2D487 /* AppDelegate.m */; };
 		2D9AA1EE1BBA6CCE00A2D487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA1ED1BBA6CCE00A2D487 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 		2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactPersonModel.m; sourceTree = "<group>"; };
 		2D8F7B001BCF846F002582DE /* contactDetailCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailCtl.h; sourceTree = "<group>"; };
 		2D8F7B011BCF846F002582DE /* contactDetailCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailCtl.m; sourceTree = "<group>"; };
+		2D8F7B031BCF9C55002582DE /* TimeCustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCustomActionSheet.h; sourceTree = "<group>"; };
+		2D8F7B041BCF9C55002582DE /* TimeCustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCustomActionSheet.m; sourceTree = "<group>"; };
 		2D9AA1E31BBA6CCE00A2D487 /* WWModelMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWModelMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9AA1E71BBA6CCE00A2D487 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D9AA1E91BBA6CCE00A2D487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,6 +78,8 @@
 		2D8F7AFB1BCF7F3E002582DE /* contactPerson */ = {
 			isa = PBXGroup;
 			children = (
+				2D8F7B031BCF9C55002582DE /* TimeCustomActionSheet.h */,
+				2D8F7B041BCF9C55002582DE /* TimeCustomActionSheet.m */,
 				2D8F7AFC1BCF7FA9002582DE /* contactPersonModel.h */,
 				2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */,
 				2D8F7B001BCF846F002582DE /* contactDetailCtl.h */,
@@ -225,6 +230,7 @@
 				2D8F7B021BCF846F002582DE /* contactDetailCtl.m in Sources */,
 				2D8F7AFE1BCF7FA9002582DE /* contactPersonModel.m in Sources */,
 				2D3C63481BC8BACF00042AC4 /* modelAssociateDB.m in Sources */,
+				2D8F7B051BCF9C55002582DE /* TimeCustomActionSheet.m in Sources */,
 				2D9AA1E81BBA6CCE00A2D487 /* main.m in Sources */,
 				2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */,
 				2D9AA2011BBA6D8900A2D487 /* Model.m in Sources */,

@@ -22,6 +22,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configData];
+    [self configUI];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //refresh contacts;
+    if (_contacts) {
+        [_contacts removeAllObjects];
+        [_contacts addObjectsFromArray:[self.associate selectAll:contactPersonModel.tableName]];
+        [_contactTable reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +50,8 @@
 {
     UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     contactPersonModel * model = [_contacts objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"名字: %@ 号码:%@ 地区:%@ 生日:%@",model.name,model.phone,model.city,[model birthdayStr]];
+    cell.textLabel.text = [NSString stringWithFormat:@"名字: %@ 号码:%@ 地区:%@",model.name,model.phone,model.city];
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
     return cell;
 }
 
@@ -61,6 +74,7 @@
 {
     contactDetailCtl * detail = [[contactDetailCtl alloc]init];
     detail.model = [_contacts objectAtIndex:indexPath.row];
+    detail.modifyRecord = YES;
     [self.navigationController pushViewController:detail animated:YES];
 }
 #pragma mark - getter
@@ -75,6 +89,8 @@
 #pragma mark - action
 
 - (IBAction)addNewContact:(id)sender {
+    contactDetailCtl * addContact = [[contactDetailCtl alloc]init];
+    [self.navigationController pushViewController:addContact animated:YES];
 }
 
 #pragma mark - private method
@@ -84,7 +100,6 @@
     _contacts = [NSMutableArray array];
     
     [_contacts addObjectsFromArray:[self.associate selectAll:contactPersonModel.tableName]];
-    
     //没有数据的情况,初始增加几个新的数据
     if (0 == _contacts.count) {
         NSDictionary * dcit1 = @{@"name":@"waiwai",@"phone":@"18888888888",@"city":@"nanjing",@"birthday":[NSDate date]};
@@ -97,9 +112,12 @@
             [self.associate saveModel:model];
         }
         //
-        [_contacts addObjectsFromArray:[self.associate selectAll:contactPersonModel.tableName]];
     }
 }
 
+- (void)configUI
+{
+    self.navigationItem.title=@"联系人";
+}
 
 @end

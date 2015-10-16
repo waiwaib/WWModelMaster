@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "contactPersonModel.h"
-@interface contactDetailCtl : UIViewController
+@interface contactDetailCtl : UIViewController<UIAlertViewDelegate>
 @property (nonatomic , retain) contactPersonModel * model;
+
+@property (nonatomic , assign) BOOL modifyRecord;
 @end
