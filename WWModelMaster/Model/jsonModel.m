@@ -232,14 +232,14 @@
             
             if (propertyTypeModel == [propertyInfo[constant_propertyType] integerValue]) {
                 
-                id <JsonModelProtocol> idTmep = returnValue;
+                id <JsonModelProtocol> idTmep = (id <JsonModelProtocol>)returnValue;
                 
                 display = [idTmep analysisModelDisplayContent];
             }
             else if(propertyTypeBool == [propertyInfo[constant_propertyType] integerValue])
             {
                 //针对bool类型 做特殊处理;
-                BOOL boolValue = [self valueForKey:properties[i]];
+                BOOL boolValue = (BOOL)[self valueForKey:properties[i]];
                 display = boolValue ? @"YES" : @"NO";
             }
             else if(propertyTypeInt == [propertyInfo[constant_propertyType] integerValue])

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "WWModel"
-  s.version      = "0.0.2"
+  s.version      = "0.0.4"
   s.summary      = "A Entity Model Class for iOS"
 
   s.description  = <<-DESC
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/waiwaib/WWModelMaster.git", :tag => "0.0.2" }
+  s.source       = { :git => "https://github.com/waiwaib/WWModelMaster.git", :tag => "0.0.4" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
