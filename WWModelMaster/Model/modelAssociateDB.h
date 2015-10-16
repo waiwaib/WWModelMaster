@@ -111,10 +111,10 @@
 /**
  *  根据主键rowId和model类查询精确目标model对象
  *
- *  @param modelClass model查询目标class
+ *  @param tableName  要查询的model类tableName
  *  @param primary    主键
  *
  *  @return 结果model
  */
-- (id<JsonModelProtocol>)findModel:(Class) modelClass  withPrimary:(NSUInteger) primary;
+- (id<JsonModelProtocol>)findWithModelTable:(NSString *) tableName  withPrimary:(NSUInteger) primary;
 @end
