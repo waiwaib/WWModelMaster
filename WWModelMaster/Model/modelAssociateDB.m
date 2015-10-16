@@ -84,6 +84,12 @@
     return [self selectWithModelTable:tableName where:nil groupBy:nil];
 }
 
+- (id<JsonModelProtocol>)findWithModelTable:(NSString *)tableName withPrimary:(NSUInteger)primary
+{
+    NSArray * models = [self selectWithModelTable:tableName where:@{defualtPrimayKey:[NSNumber numberWithUnsignedInteger:primary]} groupBy:nil];
+    return models.count ? [models firstObject] : nil;
+}
+
 - (NSArray *)selectWithModelTable:(NSString *)tableName where:(NSDictionary *)where groupBy:(NSString *)group
 {
     //bulid sql and execute sql
