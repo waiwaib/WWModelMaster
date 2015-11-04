@@ -52,6 +52,7 @@
     contactPersonModel * model = [_contacts objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"名字: %@ 号码:%@ 地区:%@",model.name,model.phone,model.city];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.accessoryType=UITableViewCellAccessoryDetailButton;
     return cell;
 }
 

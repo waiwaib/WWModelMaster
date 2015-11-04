@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WWModel"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "A Entity Model Class for iOS"
 
   s.description  = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/waiwaib/WWModelMaster.git", :tag => "0.0.4" }
+  s.source       = { :git => "https://github.com/waiwaib/WWModelMaster.git", :tag => "0.0.5" }
 
   s.source_files  = "WWModelMaster/Model/*"
   
