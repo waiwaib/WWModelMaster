@@ -28,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D0F35781BEAFE8E00CC794C /* WWModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WWModel.h; sourceTree = "<group>"; };
 		2D2FE08B1BC74D9E00544693 /* valueTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = valueTransform.h; sourceTree = "<group>"; };
 		2D2FE08C1BC74D9E00544693 /* valueTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = valueTransform.m; sourceTree = "<group>"; };
 		2D3C63431BC8BA6600042AC4 /* WWDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWDatabase.h; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 				2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */,
 				2D3C63511BC905CA00042AC4 /* WWExceptionAndError.h */,
 				2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */,
+				2D0F35781BEAFE8E00CC794C /* WWModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
