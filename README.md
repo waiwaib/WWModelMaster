@@ -1,5 +1,5 @@
 # WWModelMaster
-Model 提供了一个轻量级的model基类;支持多种数据格式;
+Model 提供了一个轻量级的model基类;支持多种数据格式;具有良好的model嵌套支持;
 
 WWDatabase 提供了数据库连接与sql执行的公共入口;
 
