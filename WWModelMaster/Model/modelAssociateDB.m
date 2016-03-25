@@ -253,18 +253,16 @@
     
     NSMutableString * result = [NSMutableString string];
     
-    __block BOOL firstItemAdd;
     
     [where enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {
             
-            [result appendString:firstItemAdd ? [NSString stringWithFormat:@"AND %@ = '%@'",key,obj] : [NSString stringWithFormat:@"WHERE %@ = '%@'",key,obj]];
-            firstItemAdd = YES;
+            [result appendString:[NSString stringWithFormat:@"AND %@ = '%@'",key,obj]];
+            
         }
         else if ([obj isKindOfClass:[NSNumber class]])
         {
-            [result appendString:firstItemAdd ? [NSString stringWithFormat:@"AND %@ = %f",key,[obj doubleValue]] : [NSString stringWithFormat:@"WHERE %@ = %f",key,[obj doubleValue]]];
-            firstItemAdd = YES;
+            [result appendString:[NSString stringWithFormat:@"AND %@ = %f",key,[obj doubleValue]]];
         }
         else
         {
@@ -272,6 +270,10 @@
             return;
         }
     }];
+    
+    if (result.length > 3) {
+        return [NSString stringWithFormat:@"WHERE %@",[result substringFromIndex:3]];
+    }
     return result;
 }
 @end

@@ -186,7 +186,7 @@
 				TargetAttributes = {
 					2D9AA1E21BBA6CCE00A2D487 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 96XLFX9JAB;
+						DevelopmentTeam = 2WAC7XEC74;
 					};
 				};
 			};
@@ -353,6 +353,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WWModelMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.waiwai.WWModelMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -366,6 +367,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WWModelMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.waiwai.WWModelMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
