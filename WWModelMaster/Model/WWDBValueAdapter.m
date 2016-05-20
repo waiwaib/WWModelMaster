@@ -60,10 +60,6 @@
             if ([obj isKindOfClass:[NSDictionary class]]) {
                 NSData * objData;
                 objData = [NSJSONSerialization dataWithJSONObject:obj options:kNilOptions error:&err];
-//                NSMutableData * data = [[NSMutableData alloc] init];
-//                NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//                [archiver encodeObject:obj forKey:@"Some Key Value"];
-//                [archiver finishEncoding];
                 if (err) {
                     throwException(@"exception", err.description);
                 }

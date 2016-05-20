@@ -336,7 +336,11 @@
     NSDictionary * propertyDic = [self toDictionary];
     
     for (NSString * key in properties) {
-        [copy setValue:propertyDic[key] forKey:key];
+        
+        if (NO == isNull(propertyDic[key])) {
+            
+            [copy setValue:propertyDic[key] forKey:key];
+        }
     }
     
     return copy;
