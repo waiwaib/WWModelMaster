@@ -107,21 +107,17 @@
         [keysArr removeObject:delKey];
     }
     
-    BOOL containModel = NO;
-    
-    NSMutableDictionary * result ;
+    NSMutableDictionary * result = [[NSMutableDictionary alloc]init];;
     
     for (NSString * property in keysArr) {
         
         id value = [self valueForKey:property];
         
+        if (nil == value) {
+            continue;
+        }
+        
         if ([value isKindOfClass:[jsonModel class]]) {
-            
-            containModel = YES;
-            
-            if (!result) {
-                result = [[NSMutableDictionary alloc]init];
-            }
             
             [result setObject:[value toDictionary] forKeyedSubscript:property];
         }
@@ -131,7 +127,7 @@
         }
     }
     
-    return containModel ? [result copy] : [self dictionaryWithValuesForKeys:keysArr];
+    return [result copy];
 }
 
 - (NSData *)toData
