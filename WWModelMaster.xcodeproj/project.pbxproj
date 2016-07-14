@@ -11,7 +11,6 @@
 		2D3C63451BC8BA6600042AC4 /* WWDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63441BC8BA6600042AC4 /* WWDatabase.m */; };
 		2D3C63481BC8BACF00042AC4 /* modelAssociateDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */; };
 		2D3C634B1BC8BB1300042AC4 /* WWDBValueAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */; };
-		2D3C634E1BC8C29900042AC4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */; };
 		2D3C63501BC8C31D00042AC4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3C634F1BC8C31D00042AC4 /* libz.tbd */; };
 		2D3C63531BC905CA00042AC4 /* WWExceptionAndError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */; };
 		2D8F7AFE1BCF7FA9002582DE /* contactPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F7AFD1BCF7FA9002582DE /* contactPersonModel.m */; };
@@ -25,6 +24,7 @@
 		2D9AA1F61BBA6CCE00A2D487 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D9AA1F41BBA6CCE00A2D487 /* LaunchScreen.storyboard */; };
 		2D9AA2011BBA6D8900A2D487 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA2001BBA6D8900A2D487 /* Model.m */; };
 		2D9AA2081BBA721B00A2D487 /* jsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AA2071BBA721B00A2D487 /* jsonModel.m */; };
+		3303FB981D373915004748FE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3303FB971D373915004748FE /* libsqlite3.0.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,6 @@
 		2D3C63471BC8BACF00042AC4 /* modelAssociateDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modelAssociateDB.m; sourceTree = "<group>"; };
 		2D3C63491BC8BB1300042AC4 /* WWDBValueAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWDBValueAdapter.h; sourceTree = "<group>"; };
 		2D3C634A1BC8BB1300042AC4 /* WWDBValueAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWDBValueAdapter.m; sourceTree = "<group>"; };
-		2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		2D3C634F1BC8C31D00042AC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2D3C63511BC905CA00042AC4 /* WWExceptionAndError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWExceptionAndError.h; sourceTree = "<group>"; };
 		2D3C63521BC905CA00042AC4 /* WWExceptionAndError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWExceptionAndError.m; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		2D9AA2001BBA6D8900A2D487 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		2D9AA2061BBA721B00A2D487 /* jsonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsonModel.h; sourceTree = "<group>"; };
 		2D9AA2071BBA721B00A2D487 /* jsonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jsonModel.m; sourceTree = "<group>"; };
+		3303FB971D373915004748FE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3303FB981D373915004748FE /* libsqlite3.0.tbd in Frameworks */,
 				2D3C63501BC8C31D00042AC4 /* libz.tbd in Frameworks */,
-				2D3C634E1BC8C29900042AC4 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,9 +126,9 @@
 		2D9AA1E61BBA6CCE00A2D487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2D3C634C1BC8C23800042AC4 /* libsqlite3.tbd */,
 				2D3C634F1BC8C31D00042AC4 /* libz.tbd */,
 				2D9AA1E71BBA6CCE00A2D487 /* main.m */,
+				3303FB971D373915004748FE /* libsqlite3.0.tbd */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -351,12 +351,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = WWModelMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.waiwai.WWModelMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -365,12 +369,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = WWModelMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.waiwai.WWModelMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
