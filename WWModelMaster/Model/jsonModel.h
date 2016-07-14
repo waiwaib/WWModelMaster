@@ -135,4 +135,11 @@
  *  该model对应的table name;
  */
 + (NSString *)tableName;
+
+/**
+ *  json值对应属性值.
+ *
+ *  @return 对应dictionary
+ */
++ (NSDictionary *)JSONKeyPathsByPropertyKey;
 @end

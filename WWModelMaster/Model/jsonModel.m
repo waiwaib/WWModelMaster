@@ -278,8 +278,15 @@
     
     NSArray * properyNames = allPropertyNames(self);
     [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        //if this model class exist json key paths;replace the key value;
+        NSDictionary *jsonKeyPaths = [[self class] JSONKeyPathsByPropertyKey];
+        if (NO == isNull(jsonKeyPaths) && [[jsonKeyPaths allKeys]containsObject:key])
+        {
+            key = jsonKeyPaths[key];
+        }
+        
         if ([properyNames containsObject:key]) {
-            
             objc_property_t property = class_getProperty([self class], [key cStringUsingEncoding:NSUTF8StringEncoding]);
             
             NSDictionary * propertyInfo = [valueTransform propertyInfoFromProperty:property];
@@ -398,5 +405,11 @@
 + (NSString *)tableName
 {
     return NSStringFromClass([self class]);
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    //defulat no json paths with property keys
+    return nil;
 }
 @end
