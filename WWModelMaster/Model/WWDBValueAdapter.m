@@ -121,6 +121,7 @@
                 
                 if (isNull(obj)) {
                     WWExceptionLog(@"data can't be nil");
+                    break;
                 }
                 
                 NSError * serialErr;
@@ -138,6 +139,10 @@
             }
             case propertyTypeArrray:
             {
+                if (isNull(obj)) {
+                    WWExceptionLog(@"data can't be nil");
+                    break;
+                }
                 NSArray * array = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
                 if (array) {
                     [modelDict setObject:array forKey:key];
