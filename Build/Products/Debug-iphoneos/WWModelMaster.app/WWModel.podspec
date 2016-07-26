@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WWModel"
-  s.version      = "1.1.1"
+  s.version      = "1.1.0"
   s.summary      = "A Entity Model Class for iOS"
 
   s.description  = <<-DESC
@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
   
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/waiwaib/WWModelMaster.git", :tag => "1.1.1" }
+  s.source       = { :git => "https://github.com/waiwaib/WWModelMaster.git", :tag => "1.0.9" }
 
   s.source_files  = "WWModelMaster/Model/*"
   
   s.frameworks = "Foundation"
 
-  s.library     = "sqlite3.0"
+  s.library     = "sqlite3"
 
   s.requires_arc = true
   

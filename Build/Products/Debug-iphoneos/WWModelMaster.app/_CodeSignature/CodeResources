@@ -66,6 +66,10 @@
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
 		</data>
+		<key>WWModel.podspec</key>
+		<data>
+		6Y6liYwUCdtHQYOvQmG98xneybg=
+		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
 		yp/e7O4M6Dgjb1Sb/tCXyafrBB4=
@@ -150,6 +154,17 @@
 			</data>
 			<key>optional</key>
 			<true/>
+		</dict>
+		<key>WWModel.podspec</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			6Y6liYwUCdtHQYOvQmG98xneybg=
+			</data>
+			<key>hash2</key>
+			<data>
+			j25wusv65Q+XuA3tdU8Ax6rkKOzaIKWU7bJfxAFg7dw=
+			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
